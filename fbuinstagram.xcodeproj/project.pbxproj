@@ -17,6 +17,7 @@
 		9019265420F2AF37008C8CCD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9019265320F2AF37008C8CCD /* main.m */; };
 		9019265E20F2AF37008C8CCD /* fbuinstagramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9019265D20F2AF37008C8CCD /* fbuinstagramTests.m */; };
 		9019266920F2AF37008C8CCD /* fbuinstagramUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9019266820F2AF37008C8CCD /* fbuinstagramUITests.m */; };
+		90FD511C20F41B1800144ACC /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FD511B20F41B1800144ACC /* LoginViewController.m */; };
 		B7D98B9C5EE458AEDE1D0F55 /* Pods_fbuinstagramTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 779DE39366962A7959C1B8CA /* Pods_fbuinstagramTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +60,8 @@
 		9019266420F2AF37008C8CCD /* fbuinstagramUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fbuinstagramUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9019266820F2AF37008C8CCD /* fbuinstagramUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = fbuinstagramUITests.m; sourceTree = "<group>"; };
 		9019266A20F2AF37008C8CCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		90FD511A20F41B1800144ACC /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		90FD511B20F41B1800144ACC /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		BF039D5102CE1F6E712D01BA /* Pods_fbuinstagramUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fbuinstagramUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C27B3B19ED8AA2895D6C2346 /* Pods-fbuinstagramUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fbuinstagramUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-fbuinstagramUITests/Pods-fbuinstagramUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F1F67FD90B55C077548C485B /* Pods-fbuinstagramUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fbuinstagramUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-fbuinstagramUITests/Pods-fbuinstagramUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -145,6 +148,8 @@
 				9019264520F2AF35008C8CCD /* AppDelegate.m */,
 				9019264720F2AF35008C8CCD /* ViewController.h */,
 				9019264820F2AF35008C8CCD /* ViewController.m */,
+				90FD511A20F41B1800144ACC /* LoginViewController.h */,
+				90FD511B20F41B1800144ACC /* LoginViewController.m */,
 				9019264A20F2AF35008C8CCD /* Main.storyboard */,
 				9019264D20F2AF37008C8CCD /* Assets.xcassets */,
 				9019264F20F2AF37008C8CCD /* LaunchScreen.storyboard */,
@@ -383,6 +388,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90FD511C20F41B1800144ACC /* LoginViewController.m in Sources */,
 				9019264920F2AF35008C8CCD /* ViewController.m in Sources */,
 				9019265420F2AF37008C8CCD /* main.m in Sources */,
 				9019264620F2AF35008C8CCD /* AppDelegate.m in Sources */,

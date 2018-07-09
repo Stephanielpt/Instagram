@@ -11,6 +11,7 @@
 
 @interface AppDelegate ()
 
+
 @end
 
 @implementation AppDelegate
@@ -19,16 +20,15 @@
     
     ParseClientConfiguration *config = [ParseClientConfiguration   configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
         
-        configuration.applicationId = @"myAppId";
-        configuration.clientKey = @"sefdn8302hbe0asl0oqgb72jdr7ds0ndu63bdosamfghjklkj";
-        configuration.server = @"http://fbuinstagram.herokuapp.com/parse";
+        configuration.applicationId = @"instagram";
+        configuration.clientKey = @"jdhnaskdjnaskjd";
+        configuration.server = @"https://cryptic-wave-55987.herokuapp.com/parse";
     }];
     
     [Parse initializeWithConfiguration:config];
     
     return YES;
 }
-
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -58,4 +58,12 @@
 }
 
 
+- (IBAction)usernameField:(id)sender {
+}
+
+- (IBAction)emailField:(id)sender {
+}
+
+- (IBAction)passwordField:(id)sender {
+}
 @end
