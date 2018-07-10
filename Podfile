@@ -7,6 +7,7 @@ target 'fbuinstagram' do
 
   # Pods for fbuinstagram
   pod 'Parse'
+  pod 'ParseUI'
   target 'fbuinstagramTests' do
     inherit! :search_paths
     # Pods for testing

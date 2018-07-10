@@ -173,9 +173,9 @@
 				90FD512320F42F8700144ACC /* Post.h */,
 				90FD512420F42F8700144ACC /* Post.m */,
 				90FD512920F434B700144ACC /* PostCell.h */,
+				90FD512A20F434B700144ACC /* PostCell.m */,
 				90FD512C20F466C600144ACC /* ComposeViewController.h */,
 				90FD512D20F466C600144ACC /* ComposeViewController.m */,
-				90FD512A20F434B700144ACC /* PostCell.m */,
 				9019264D20F2AF37008C8CCD /* Assets.xcassets */,
 				9019264F20F2AF37008C8CCD /* LaunchScreen.storyboard */,
 				9019265220F2AF37008C8CCD /* Info.plist */,
@@ -359,11 +359,13 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-fbuinstagram/Pods-fbuinstagram-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/Parse/Parse.framework",
+				"${BUILT_PRODUCTS_DIR}/ParseUI/ParseUI.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Parse.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ParseUI.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

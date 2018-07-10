@@ -22,10 +22,20 @@
     // Configure the view for the selected state
 }
 
-- (PostCell*)setPost:(Post *)postToCell {
-    PostCell *createdCell;
-//    createdCell.ppImage = postToCell.image;
-//    createdCell.ppImage = postToCell.;
-    return createdCell;
+//- (PostCell*)setPost:(Post *)postToCell {
+//    PostCell *createdCell;
+////    createdCell.ppImage = postToCell.image;
+////    createdCell.ppImage = postToCell.;
+//    return createdCell;
+//}
+
+- (void)settPost:(Post *)post {
+    if(post == nil)
+    {
+        NSLog(@"mo pic soz");
+    }
+    self.post = post;
+    self.postedImage.file = post[@"image"];
+    [self.postedImage loadInBackground];
 }
 @end

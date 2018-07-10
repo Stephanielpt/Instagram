@@ -21,7 +21,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(makeCallToAPI:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:refreshControl atIndex:0];
     // FILL THE ARRAY OF POSTS
+    
     // construct PFQuery
     PFQuery *postQuery = [Post query];
     [postQuery orderByDescending:@"createdAt"];
@@ -32,6 +36,9 @@
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
         if (posts) {
             self.posts = posts;
+            NSLog(@"got 'em");
+            [self.tableView reloadData];
+            [refreshControl endRefreshing];
         }
         else {
             NSLog(@"ERROR GETTING THE PARSE POSTS!");
@@ -39,16 +46,17 @@
     }];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.rowHeight = 100;
+    self.tableView.rowHeight = 600;
+    
     // Do any additional setup after loading the view.
-    [self.tableView reloadData];
+    
     NSLog(@"hopefully here last");
-    [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(onTimer) userInfo:nil repeats:true];
+    //[NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(onTimer) userInfo:nil repeats:true];
 }
 
-- (void)onTimer {
-    [self.tableView reloadData]; 
-}
+//- (void)onTimer {
+//    [self.tableView reloadData];
+//}
 
 - (IBAction)logoutTap:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
@@ -78,9 +86,14 @@
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"postCell"];
     //cell.delegate = self;
 
-    //Post * curPost = self.posts[indexPath.row];
-    cell.captionLabel.text = @"ahmazing";
+    Post * curPost = self.posts[indexPath.row];
+    cell.captionLabel.text = curPost.caption;
+    //cell.postedImage.image = curPost.image;
+    cell.screennameLabel.text = curPost.author.username;
+//    cell.ppImage = curPost.userID;
+//    cell.locationLabel = curPost.
     //[cell setPost:curPost];
+    [cell settPost:curPost];
     NSLog(@"hopefully here first");
 //    cell.frame.size.height = CGRectMake(cell.frame.origin.x, cell.frame.origin.x, cell.frame.size.width, 50);
 
