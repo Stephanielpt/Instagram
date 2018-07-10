@@ -22,11 +22,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(makeCallToAPI:) forControlEvents:UIControlEventValueChanged];
+    [refreshControl addTarget:self action:@selector(getQuery:) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:refreshControl atIndex:0];
     // FILL THE ARRAY OF POSTS
+    [self getQuery:refreshControl];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.rowHeight = 600;
     
-    // construct PFQuery
+    // Do any additional setup after loading the view.
+    
+    NSLog(@"hopefully here last");
+    //[NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(onTimer) userInfo:nil repeats:true];
+}
+
+//- (void)onTimer {
+//    [self.tableView reloadData];
+//}
+
+- (void)getQuery:(UIRefreshControl *)refreshControl {
     PFQuery *postQuery = [Post query];
     [postQuery orderByDescending:@"createdAt"];
     [postQuery includeKey:@"author"];
@@ -44,20 +58,7 @@
             NSLog(@"ERROR GETTING THE PARSE POSTS!");
         }
     }];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.rowHeight = 600;
-    
-    // Do any additional setup after loading the view.
-    
-    NSLog(@"hopefully here last");
-    //[NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(onTimer) userInfo:nil repeats:true];
 }
-
-//- (void)onTimer {
-//    [self.tableView reloadData];
-//}
-
 - (IBAction)logoutTap:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
         // PFUser.current() will now be nil

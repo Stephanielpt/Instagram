@@ -79,7 +79,7 @@
 //    self.myNewPost.likeCount = 0;
 //    self.myNewPost.commentCount = 0;
 //    UIImage *downscaled =
-    [self resizeImage:self.picToUpload withSize:<#(CGSize)#>
+    [self resizeImage:self.picToUpload withSize:CGSizeMake(1, 1)];
     [Post postUserImage:self.picToUpload.image withCaption:self.captionLabel.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded)
         {
