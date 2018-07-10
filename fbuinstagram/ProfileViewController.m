@@ -13,6 +13,7 @@
 
 @interface ProfileViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *collView;
+@property (weak, nonatomic) IBOutlet UILabel *screennameLabel;
 @property (strong, nonatomic) NSArray *posts;
 
 @end
@@ -28,6 +29,15 @@
     [self.collView insertSubview:refreshControl atIndex:0];
     // Do any additional setup after loading the view.
     [self getQuery:refreshControl];
+    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout*)self.collView.collectionViewLayout;
+    
+    layout.minimumInteritemSpacing = 7;
+    layout.minimumLineSpacing = 7;
+    
+    CGFloat postersPerLine = 3;
+    CGFloat itemWidth = (self.collView.frame.size.width - layout.minimumInteritemSpacing * (postersPerLine-1)) / postersPerLine;
+    CGFloat itemHeight = itemWidth;
+    layout.itemSize = CGSizeMake(itemWidth, itemHeight);
 }
 
 - (void)getQuery:(UIRefreshControl *)refreshControl {

@@ -65,7 +65,7 @@
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     // editedImage = [editedImage resizeImage]
     // Do something with the images (based on your use case)
-    self.picToUpload.image = originalImage;
+    self.picToUpload.image = editedImage;
 //    [self.posts addObject:editedImage];
 //    [self.tableView reloadData];
     
