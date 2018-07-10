@@ -72,6 +72,23 @@
     // Dismiss UIImagePickerController to go back to your original view controller
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+- (IBAction)sharePostTap:(id)sender {
+//    self.myNewPost.image = [Post getPF
+//    [self.picToUpload.image getP];
+//    self.myNewPost.caption = self.captionLabel.text;
+//    self.myNewPost.likeCount = 0;
+//    self.myNewPost.commentCount = 0;
+    [Post postUserImage:self.picToUpload.image withCaption:self.captionLabel.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        if(succeeded)
+        {
+            NSLog(@"uploaded!");
+        }
+        else {
+            NSLog(@"could upload - sorry");
+        }
+        [self performSegueWithIdentifier:@"cancelUpload" sender:nil];
+    }];
+}
 
 - (IBAction)cancelUpload:(id)sender {
     [self performSegueWithIdentifier:@"cancelUpload" sender:nil];

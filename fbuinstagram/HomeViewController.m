@@ -30,6 +30,10 @@
     NSLog(@"hopefully here last");
 }
 
+- (IBAction)logoutTap:(id)sender {
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

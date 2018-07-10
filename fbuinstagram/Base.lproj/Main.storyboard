@@ -194,7 +194,12 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Feed" id="FJ5-f8-vgS">
-                        <barButtonItem key="rightBarButtonItem" title="Upload" id="9ue-wc-g7l">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="hu9-5Q-ROo">
+                            <connections>
+                                <action selector="logoutTap:" destination="Ig7-hK-DB7" id="i1i-3I-kEs"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Upload" image="insta_camera_btn" id="9ue-wc-g7l">
                             <connections>
                                 <segue destination="idO-bu-otH" kind="show" id="Y4D-Ic-Rfl"/>
                             </connections>
@@ -243,7 +248,11 @@
                                 <action selector="cancelUpload:" destination="uRQ-Lj-ALx" id="vEc-xR-SMz"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Share" id="7xu-37-VTq"/>
+                        <barButtonItem key="rightBarButtonItem" title="Share" id="7xu-37-VTq">
+                            <connections>
+                                <action selector="sharePostTap:" destination="uRQ-Lj-ALx" id="h5Z-14-bXd"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="captionLabel" destination="blR-oA-XYB" id="F2a-hy-sgd"/>
@@ -299,8 +308,10 @@
     </scenes>
     <resources>
         <image name="image_placeholder" width="375" height="375"/>
+        <image name="insta_camera_btn" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Y4D-Ic-Rfl"/>
         <segue reference="gRg-qf-eS7"/>
     </inferredMetricsTieBreakers>
 </document>
