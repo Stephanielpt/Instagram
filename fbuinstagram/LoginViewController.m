@@ -22,6 +22,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
+- (IBAction)alreadyAccountTap:(id)sender {
+    [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+}
+
 - (IBAction)signinTap:(id)sender {
     PFUser *newUser = [PFUser user];
     
