@@ -6,6 +6,8 @@
 //
 
 #import "PostCell.h"
+#import "Post.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation PostCell
 
@@ -20,4 +22,10 @@
     // Configure the view for the selected state
 }
 
+- (PostCell*)setPost:(Post *)postToCell {
+    PostCell *createdCell;
+//    createdCell.ppImage = postToCell.image;
+//    createdCell.ppImage = postToCell.;
+    return createdCell;
+}
 @end

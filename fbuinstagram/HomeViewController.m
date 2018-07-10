@@ -12,7 +12,7 @@
 
 @interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSMutableArray *posts;
+@property (strong, nonatomic) NSArray *posts;
 
 
 @end
@@ -22,16 +22,39 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // FILL THE ARRAY OF POSTS
+    // construct PFQuery
+    PFQuery *postQuery = [Post query];
+    [postQuery orderByDescending:@"createdAt"];
+    [postQuery includeKey:@"author"];
+    postQuery.limit = 20;
+    
+    // fetch data asynchronously
+    [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
+        if (posts) {
+            self.posts = posts;
+        }
+        else {
+            NSLog(@"ERROR GETTING THE PARSE POSTS!");
+        }
+    }];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.rowHeight = 100;
     // Do any additional setup after loading the view.
     [self.tableView reloadData];
     NSLog(@"hopefully here last");
+    [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(onTimer) userInfo:nil repeats:true];
+}
+
+- (void)onTimer {
+    [self.tableView reloadData];
 }
 
 - (IBAction)logoutTap:(id)sender {
-    
+    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+        // PFUser.current() will now be nil
+    }];
+    [self performSegueWithIdentifier:@"logoutSegue" sender:nil];
 }
 
 - (void)didReceiveMemoryWarning {
