@@ -156,7 +156,7 @@
         <!--Feed-->
         <scene sceneID="Agd-fn-RyG">
             <objects>
-                <viewController storyboardIdentifier="HomeViewController" id="Ig7-hK-DB7" customClass="HomeViewController" sceneMemberID="viewController">
+                <viewController id="Ig7-hK-DB7" customClass="HomeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7t0-dU-WWX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -183,7 +183,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="captionLabel" destination="Uqe-Ts-hMI" id="Zpz-kN-MWe"/>
+                                            <outlet property="captionLabel" destination="Uqe-Ts-hMI" id="eHp-3S-OrV"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -196,7 +196,7 @@
                     <navigationItem key="navigationItem" title="Feed" id="FJ5-f8-vgS">
                         <barButtonItem key="rightBarButtonItem" title="Upload" id="9ue-wc-g7l">
                             <connections>
-                                <action selector="uploadTap:" destination="Ig7-hK-DB7" id="CQu-fJ-MGZ"/>
+                                <segue destination="idO-bu-otH" kind="show" id="Y4D-Ic-Rfl"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -207,12 +207,63 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R3x-Ff-wJh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4402" y="121"/>
+            <point key="canvasLocation" x="4400.8000000000002" y="120.98950524737631"/>
+        </scene>
+        <!--New Post-->
+        <scene sceneID="5MM-zv-30h">
+            <objects>
+                <viewController id="uRQ-Lj-ALx" customClass="ComposeViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ciP-8j-zm9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="SGH-PP-n3F">
+                                <rect key="frame" x="16" y="92" width="128" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="CxL-Rs-6Re" appends="YES" id="WbP-Yk-tQV"/>
+                                </connections>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="blR-oA-XYB">
+                                <rect key="frame" x="152" y="92" width="207" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="zEt-xB-0mc"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="New Post" id="LlY-FO-EQU">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="ody-Cr-90t">
+                            <connections>
+                                <action selector="cancelUpload:" destination="uRQ-Lj-ALx" id="vEc-xR-SMz"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Share" id="7xu-37-VTq"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="captionLabel" destination="blR-oA-XYB" id="F2a-hy-sgd"/>
+                        <outlet property="picToUpload" destination="SGH-PP-n3F" id="yIo-GF-kpB"/>
+                        <segue destination="Ig7-hK-DB7" kind="show" identifier="cancelUpload" id="gRg-qf-eS7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QCv-6o-6WI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="CxL-Rs-6Re">
+                    <connections>
+                        <action selector="uploadTap:" destination="uRQ-Lj-ALx" id="SXi-A9-jig"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="6064.8000000000002" y="120.98950524737631"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jhc-i4-sfe">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8VO-Um-Jjy" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="HomeViewController" automaticallyAdjustsScrollViewInsets="NO" id="8VO-Um-Jjy" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="o9l-hQ-bIf">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -227,5 +278,29 @@
             </objects>
             <point key="canvasLocation" x="3586" y="121"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="8UV-V9-kLN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="idO-bu-otH" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="giP-Rq-ggN">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="uRQ-Lj-ALx" kind="relationship" relationship="rootViewController" id="HkL-e2-h42"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ae5-6F-qBM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5231" y="121"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="image_placeholder" width="375" height="375"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="gRg-qf-eS7"/>
+    </inferredMetricsTieBreakers>
 </document>
