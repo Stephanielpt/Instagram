@@ -47,7 +47,7 @@
 }
 
 - (void)onTimer {
-    [self.tableView reloadData];
+    [self.tableView reloadData]; 
 }
 
 - (IBAction)logoutTap:(id)sender {
