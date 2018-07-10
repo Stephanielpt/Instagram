@@ -11,7 +11,7 @@
 #import "Post.h"
 
 @interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
-@property (weak, nonatomic) IBOutlet UITableView *picTableView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *posts;
 
 
@@ -22,7 +22,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    [self.tableView reloadData];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     
 }
 
@@ -69,7 +71,7 @@
     // editedImage = [editedImage resizeImage]
     // Do something with the images (based on your use case)
     [self.posts addObject:editedImage];
-    [self.picTableView reloadData];
+    [self.tableView reloadData];
     
     // Dismiss UIImagePickerController to go back to your original view controller
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -92,11 +94,12 @@
 }
 */
 
-- (nonnull postCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    postCell *cell = [tableView dequeueReusableCellWithIdentifier:@"postCell"];
+- (nonnull PostCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"postCell"];
     //cell.delegate = self;
-    cell = self.posts[indexPath.row];
+
     Post * curPost = self.posts[indexPath.row];
+    cell.captionLabel.text = @"ahmazing";
     //[cell setPost:curPost];
     
 //    cell.frame.size.height = CGRectMake(cell.frame.origin.x, cell.frame.origin.x, cell.frame.size.width, 50);

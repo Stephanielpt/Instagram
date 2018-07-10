@@ -5,9 +5,9 @@
 //  Created by Stephanie Lampotang on 7/9/18.
 //
 
-#import "postCell.h"
+#import "PostCell.h"
 
-@implementation postCell
+@implementation PostCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
