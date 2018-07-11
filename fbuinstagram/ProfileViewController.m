@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "Post.h"
 #import "PostCollectionViewCell.h"
+#import "DetailsViewController.h"
 
 @interface ProfileViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *collView;
@@ -31,8 +32,8 @@
     [self getQuery:refreshControl];
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout*)self.collView.collectionViewLayout;
     
-    layout.minimumInteritemSpacing = 7;
-    layout.minimumLineSpacing = 7;
+    layout.minimumInteritemSpacing = 1;
+    layout.minimumLineSpacing = 1;
     
     CGFloat postersPerLine = 3;
     CGFloat itemWidth = (self.collView.frame.size.width - layout.minimumInteritemSpacing * (postersPerLine-1)) / postersPerLine;
@@ -65,15 +66,21 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    PostCollectionViewCell *tappedCell = sender;
+    NSIndexPath *indexPath = [self.collView indexPathForCell:tappedCell];
+    Post *post = self.posts[indexPath.item];
+    DetailsViewController *detailsViewController = [segue destinationViewController];
+    detailsViewController.post = post;
+    detailsViewController.postCell = tappedCell;
 }
-*/
+
 
 - (nonnull __kindof PostCollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PostCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PostCollectionViewCell" forIndexPath:indexPath];

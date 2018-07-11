@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <ParseUI/ParseUI.h>
+#import "Post.h"
+#import "PostCollectionViewCell.h"
 
 @interface DetailsViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UILabel *screennameLabel;
+@property (weak, nonatomic) IBOutlet PFImageView *postedImage;
+@property (weak, nonatomic) IBOutlet UILabel *captionLabel;
+@property (strong, nonatomic) Post *post;
+@property (strong, nonatomic) PostCollectionViewCell *postCell;
 
 @end

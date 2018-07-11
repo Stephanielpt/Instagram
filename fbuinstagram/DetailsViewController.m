@@ -7,6 +7,7 @@
 //
 
 #import "DetailsViewController.h"
+#import <ParseUI/ParseUI.h>
 
 @interface DetailsViewController ()
 
@@ -17,6 +18,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.screennameLabel.text = self.post.author.username;
+    self.captionLabel.text = self.post.caption;
+    if(self.post == nil)
+    {
+        NSLog(@"no pic soz");
+    }
+//    self.post = post;
+    self.postedImage.file = self.postCell.post[@"image"];
+    [self.postedImage loadInBackground];
 }
 
 - (void)didReceiveMemoryWarning {

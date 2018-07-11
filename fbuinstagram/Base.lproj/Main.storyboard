@@ -182,7 +182,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rFr-Us-v74">
-                                <rect key="frame" x="32" y="187" width="312" height="30"/>
+                                <rect key="frame" x="32" y="231" width="312" height="30"/>
                                 <color key="backgroundColor" white="0.93902137450000001" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="oiM-42-nf8"/>
@@ -192,14 +192,14 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U7B-sd-HjW">
-                                <rect key="frame" x="32" y="240" width="312" height="30"/>
+                                <rect key="frame" x="32" y="284" width="312" height="30"/>
                                 <color key="backgroundColor" white="0.93902137450000001" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cgG-IG-LYU">
-                                <rect key="frame" x="158" y="305" width="43" height="30"/>
+                                <rect key="frame" x="158" y="349" width="43" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="et6-89-xhm"/>
                                 </constraints>
@@ -210,7 +210,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="instabrand" translatesAutoresizingMaskIntoConstraints="NO" id="i8d-J8-Zvi">
-                                <rect key="frame" x="87" y="81" width="201" height="74"/>
+                                <rect key="frame" x="87" y="125" width="201" height="74"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="74" id="e96-dM-eYM"/>
                                 </constraints>
@@ -254,7 +254,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="8VO-Um-Jjy" kind="relationship" relationship="viewControllers" id="hez-m2-7sE"/>
-                        <segue destination="au2-y1-z20" kind="relationship" relationship="viewControllers" id="czi-h9-0Nz"/>
+                        <segue destination="Vrk-tm-kId" kind="relationship" relationship="viewControllers" id="czi-h9-0Nz"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pzo-ed-nCR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -401,7 +401,7 @@
                     <connections>
                         <outlet property="captionLabel" destination="blR-oA-XYB" id="F2a-hy-sgd"/>
                         <outlet property="picToUpload" destination="SGH-PP-n3F" id="yIo-GF-kpB"/>
-                        <segue destination="Ig7-hK-DB7" kind="show" identifier="cancelUpload" id="gRg-qf-eS7"/>
+                        <segue destination="7Q2-oc-vYl" kind="show" identifier="cancelUpload" id="puP-i2-Y8f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QCv-6o-6WI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -413,7 +413,7 @@
             </objects>
             <point key="canvasLocation" x="7522" y="724"/>
         </scene>
-        <!--Profile-->
+        <!--Profile View Controller-->
         <scene sceneID="FYm-Y9-XhW">
             <objects>
                 <viewController id="au2-y1-z20" customClass="ProfileViewController" sceneMemberID="viewController">
@@ -443,18 +443,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="154" height="154"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zwp-k1-mn0" customClass="PFImageView">
+                                                <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zwp-k1-mn0" customClass="PFImageView">
                                                     <rect key="frame" x="0.0" y="0.0" width="154" height="154"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <gestureRecognizers/>
-                                                    <connections>
-                                                        <outletCollection property="gestureRecognizers" destination="9Dg-1G-09u" appends="YES" id="2Id-ZL-PwC"/>
-                                                    </connections>
                                                 </imageView>
                                             </subviews>
                                         </view>
                                         <connections>
                                             <outlet property="postedImage" destination="zwp-k1-mn0" id="WPI-0h-L7c"/>
+                                            <segue destination="UnN-39-Nq8" kind="show" id="Whb-B8-xvN"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -470,20 +468,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="BdM-FL-cyF"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" id="s4S-P4-LHA"/>
+                    <navigationItem key="navigationItem" id="2aN-Xb-ub2"/>
                     <connections>
                         <outlet property="collView" destination="0N5-JN-iwq" id="71L-Bc-hb6"/>
                         <outlet property="screennameLabel" destination="36H-C1-s3M" id="yQd-e6-Npy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sUl-ww-a5Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="9Dg-1G-09u">
-                    <connections>
-                        <segue destination="UnN-39-Nq8" kind="show" id="g8u-BW-N9p"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="4992.8000000000002" y="-455.62218890554726"/>
+            <point key="canvasLocation" x="6792.8000000000002" y="-456.52173913043481"/>
         </scene>
         <!--Details View Controller-->
         <scene sceneID="uC4-Ph-8kJ">
@@ -493,14 +486,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2V2-WN-4Dh">
-                                <rect key="frame" x="13" y="75" width="348" height="348"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2V2-WN-4Dh" customClass="PFImageView">
+                                <rect key="frame" x="13" y="103" width="348" height="348"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="screenname" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fRD-BE-waQ">
-                                <rect key="frame" x="13" y="46" width="294" height="21"/>
+                                <rect key="frame" x="13" y="75" width="304" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtS-eZ-iZ5">
+                                <rect key="frame" x="13" y="449" width="345" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -508,10 +508,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="zQk-Nk-bOB"/>
                     </view>
+                    <navigationItem key="navigationItem" id="iZw-XG-4wH"/>
+                    <connections>
+                        <outlet property="captionLabel" destination="gtS-eZ-iZ5" id="EGC-JF-zPW"/>
+                        <outlet property="postedImage" destination="2V2-WN-4Dh" id="dpn-9A-Lrv"/>
+                        <outlet property="screennameLabel" destination="fRD-BE-waQ" id="jva-l7-Faw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3yX-6d-Vu1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6150" y="-456"/>
+            <point key="canvasLocation" x="8028" y="-456.52173913043481"/>
         </scene>
         <!--Feed-->
         <scene sceneID="jhc-i4-sfe">
@@ -550,6 +556,25 @@
             </objects>
             <point key="canvasLocation" x="6714" y="724"/>
         </scene>
+        <!--Profile-->
+        <scene sceneID="6V2-Ic-pBf">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Vrk-tm-kId" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" id="s4S-P4-LHA"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7fH-wc-c34">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="au2-y1-z20" kind="relationship" relationship="rootViewController" id="eMn-Ic-6NB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zyt-Ip-Jdz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5853.6000000000004" y="-457.42128935532236"/>
+        </scene>
     </scenes>
     <resources>
         <image name="image_placeholder" width="375" height="375"/>
@@ -558,7 +583,7 @@
         <image name="whiteinstabrand" width="1000" height="358"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xY2-ob-9uR"/>
+        <segue reference="puP-i2-Y8f"/>
         <segue reference="byn-fW-4wh"/>
     </inferredMetricsTieBreakers>
 </document>
