@@ -11,9 +11,10 @@
 #import "Post.h"
 #import "PostCollectionViewCell.h"
 #import "DetailsViewController.h"
+#import <ParseUI/ParseUI.h>
 
 @interface ProfileViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate>
-@property (weak, nonatomic) IBOutlet UIImageView *ppImage;
+@property (weak, nonatomic) IBOutlet PFImageView *ppImage;
 @property (weak, nonatomic) IBOutlet UICollectionView *collView;
 @property (weak, nonatomic) IBOutlet UILabel *screennameLabel;
 @property (strong, nonatomic) NSArray *posts;
@@ -42,6 +43,9 @@
     CGFloat itemHeight = itemWidth;
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
     self.ppImage.layer.cornerRadius = 45;
+    //set the profile pic
+//    self.ppImage.file = self.posts[0][@"author"][@"image"];
+//    [self.ppImage loadInBackground];
 }
 
 - (void)getQuery:(UIRefreshControl *)refreshControl {
@@ -57,6 +61,12 @@
             NSLog(@"got 'emmmmmmmm");
             [self.collView reloadData];
             [refreshControl endRefreshing];
+            //set the profile pic
+            self.ppImage.file = self.posts[0][@"author"][@"image"];
+            [self.ppImage loadInBackground];
+            //    self.ppImage.file = post.author[@"image"];
+            //    [self.ppImage loadInBackground];
+
         }
         else {
             NSLog(@"ERROR GETTING THE PARSE POSTS!");
@@ -106,11 +116,13 @@
     // editedImage = [editedImage resizeImage]
     // Do something with the images (based on your use case)
     self.ppImage.image = editedImage;
-    
+    //save the image
     PFUser *user = self.posts[0][@"author"];
     user[@"image"] = [Post getPFFileFromImage:editedImage];
     [user saveInBackground];
-    
+    //now show the image chosen
+    self.ppImage.file = self.posts[0][@"author"][@"image"];
+    [self.ppImage loadInBackground];
     // Dismiss UIImagePickerController to go back to your original view controller
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -139,7 +151,7 @@
     PFQuery *postQuery = [Post query];
     [postQuery orderByDescending:@"createdAt"];
     [postQuery includeKey:@"author"];
-    postQuery.skip = 20;
+    //postQuery.skip = 20;
     //    postQuery.limit = 20;
     
     // fetch data asynchronously

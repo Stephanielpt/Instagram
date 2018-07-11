@@ -10,6 +10,7 @@
 #import <ParseUI/ParseUI.h>
 
 @interface DetailsViewController ()
+@property (weak, nonatomic) IBOutlet PFImageView *ppImage;
 
 @end
 
@@ -27,6 +28,9 @@
 //    self.post = post;
     self.postedImage.file = self.postCell.post[@"image"];
     [self.postedImage loadInBackground];
+    self.ppImage.file = self.postCell.post[@"author"][@"image"];
+    [self.ppImage loadInBackground];
+    self.ppImage.layer.cornerRadius = 25;
 }
 
 - (void)didReceiveMemoryWarning {
