@@ -13,7 +13,7 @@
 @interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *posts;
-
+@property (strong, nonatomic) NSString *createdAtString;
 
 @end
 
@@ -91,6 +91,8 @@
     cell.captionLabel.text = curPost.caption;
     //cell.postedImage.image = curPost.image;
     cell.screennameLabel.text = curPost.author.username;
+    //cell.dateLabel.text = curPost.createdAt;
+    
 //    cell.ppImage = curPost.userID;
 //    cell.locationLabel = curPost.
     //[cell setPost:curPost];

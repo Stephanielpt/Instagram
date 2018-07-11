@@ -13,9 +13,9 @@
 @interface PostCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *ppImage;
 @property (weak, nonatomic) IBOutlet UILabel *screennameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet PFImageView *postedImage;
 @property (weak, nonatomic) IBOutlet UILabel *captionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (strong, nonatomic) Post *post;
 
 - (void)settPost:(Post *)post;

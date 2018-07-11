@@ -304,10 +304,10 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RJh-nZ-86U">
-                                                    <rect key="frame" x="13" y="34" width="294" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nSd-dm-PWC">
+                                                    <rect key="frame" x="16" y="486" width="345" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="11"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -315,7 +315,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="captionLabel" destination="zcU-Q5-XLf" id="AGg-6f-gKa"/>
-                                            <outlet property="locationLabel" destination="RJh-nZ-86U" id="Osa-pp-mDQ"/>
+                                            <outlet property="dateLabel" destination="nSd-dm-PWC" id="R9y-61-pR0"/>
                                             <outlet property="postedImage" destination="fia-zC-aQ9" id="ALw-cL-ybd"/>
                                             <outlet property="ppImage" destination="l0E-4s-2SP" id="qCf-Pl-2a6"/>
                                             <outlet property="screennameLabel" destination="Uqe-Ts-hMI" id="odf-Iw-9wc"/>
@@ -355,7 +355,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R3x-Ff-wJh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5855" y="724"/>
+            <point key="canvasLocation" x="5853.6000000000004" y="723.68815592203907"/>
         </scene>
         <!--New Post-->
         <scene sceneID="5MM-zv-30h">
@@ -593,6 +593,7 @@
         <image name="whiteinstabrand" width="1000" height="358"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Y4D-Ic-Rfl"/>
         <segue reference="puP-i2-Y8f"/>
         <segue reference="byn-fW-4wh"/>
     </inferredMetricsTieBreakers>
