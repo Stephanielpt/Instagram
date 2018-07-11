@@ -12,6 +12,7 @@
 @interface ComposeViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *picToUpload;
 @property (weak, nonatomic) IBOutlet UITextView *captionLabel;
+@property (weak, nonatomic) IBOutlet UITextView *myUITextView;
 @property (strong, nonatomic) Post *myNewPost;
 
 @end
@@ -21,6 +22,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.myUITextView.delegate = self;
+    self.myUITextView.text = @"Write a caption...";
+    self.myUITextView.textColor = [UIColor lightGrayColor];
 }
 
 - (IBAction)uploadTap:(id)sender {
@@ -87,6 +91,24 @@
         [self dismissViewControllerAnimated:true completion:nil];
         
     }];
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    if ([textView.text isEqualToString:@"Write a caption..."]) {
+        textView.text = @"";
+        textView.textColor = [UIColor blackColor]; //optional
+    }
+    [textView becomeFirstResponder];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    if ([textView.text isEqualToString:@""]) {
+        textView.text = @"Write a caption...";
+        textView.textColor = [UIColor lightGrayColor]; //optional
+    }
+    [textView resignFirstResponder];
 }
 
 - (IBAction)cancelUpload:(id)sender {
