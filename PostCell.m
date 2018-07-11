@@ -37,5 +37,9 @@
     self.post = post;
     self.postedImage.file = post[@"image"];
     [self.postedImage loadInBackground];
+    self.ppImage.file = post.author[@"image"];
+    [self.ppImage loadInBackground];
+    self.ppImage.layer.cornerRadius = 25;
+    
 }
 @end

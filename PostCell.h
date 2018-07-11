@@ -11,7 +11,7 @@
 #import "Post.h"
 
 @interface PostCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *ppImage;
+@property (weak, nonatomic) IBOutlet PFImageView *ppImage;
 @property (weak, nonatomic) IBOutlet UILabel *screennameLabel;
 @property (weak, nonatomic) IBOutlet PFImageView *postedImage;
 @property (weak, nonatomic) IBOutlet UILabel *captionLabel;

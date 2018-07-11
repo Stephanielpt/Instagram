@@ -10,14 +10,21 @@
 #import "postCell.h"
 #import "Post.h"
 
-@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *posts;
 @property (strong, nonatomic) NSString *createdAtString;
+@property (assign, nonatomic) BOOL isMoreDataLoading;
 
 @end
 
 @implementation HomeViewController
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:true];
+    [self getQuery:nil];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -52,7 +59,9 @@
             self.posts = posts;
             NSLog(@"got 'em");
             [self.tableView reloadData];
-            [refreshControl endRefreshing];
+            if (refreshControl) {
+                [refreshControl endRefreshing];
+            }
         }
         else {
             NSLog(@"ERROR GETTING THE PARSE POSTS!");
@@ -70,7 +79,48 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if(!self.isMoreDataLoading){
+        // Calculate the position of one screen length before the bottom of the results
+        int scrollViewContentHeight = self.tableView.contentSize.height;
+        int scrollOffsetThreshold = scrollViewContentHeight - self.tableView.bounds.size.height;
+        
+        // When the user has scrolled past the threshold, start requesting
+        if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging) {
+            self.isMoreDataLoading = true;
+            
+            // ... Code to load more results ...
+            UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+            [refreshControl addTarget:self action:@selector(getMoreQuery:) forControlEvents:UIControlEventValueChanged];
+            [self.tableView insertSubview:refreshControl atIndex:0];
+            
+            [self getMoreQuery:refreshControl];
+        }
+    }
+}
 
+- (void)getMoreQuery:(UIRefreshControl *)refreshControl {
+    PFQuery *postQuery = [Post query];
+    [postQuery orderByDescending:@"createdAt"];
+    [postQuery includeKey:@"author"];
+    postQuery.skip = 20;
+//    postQuery.limit = 20;
+    
+    // fetch data asynchronously
+    [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
+        if (posts) {
+            self.posts = posts;
+            NSLog(@"got more of 'em");
+            [self.tableView reloadData];
+            if (refreshControl) {
+                [refreshControl endRefreshing];
+            }
+        }
+        else {
+            NSLog(@"ERROR GETTING THE EXTRA PARSE POSTS!");
+        }
+    }];
+}
 
 
 /*

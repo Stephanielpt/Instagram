@@ -12,11 +12,12 @@
 #import "PostCollectionViewCell.h"
 #import "DetailsViewController.h"
 
-@interface ProfileViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface ProfileViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *ppImage;
 @property (weak, nonatomic) IBOutlet UICollectionView *collView;
 @property (weak, nonatomic) IBOutlet UILabel *screennameLabel;
 @property (strong, nonatomic) NSArray *posts;
+@property (assign, nonatomic) BOOL isMoreDataLoading;
 
 @end
 
@@ -106,10 +107,57 @@
     // Do something with the images (based on your use case)
     self.ppImage.image = editedImage;
     
+    PFUser *user = self.posts[0][@"author"];
+    user[@"image"] = [Post getPFFileFromImage:editedImage];
+    [user saveInBackground];
     
     // Dismiss UIImagePickerController to go back to your original view controller
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if(!self.isMoreDataLoading){
+        // Calculate the position of one screen length before the bottom of the results
+        int scrollViewContentHeight = self.collView.contentSize.height;
+        int scrollOffsetThreshold = scrollViewContentHeight - self.collView.bounds.size.height;
+        
+        // When the user has scrolled past the threshold, start requesting
+        if(scrollView.contentOffset.y > scrollOffsetThreshold && self.collView.isDragging) {
+            self.isMoreDataLoading = true;
+            
+            // ... Code to load more results ...
+            UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+            [refreshControl addTarget:self action:@selector(getMoreQuery:) forControlEvents:UIControlEventValueChanged];
+            [self.collView insertSubview:refreshControl atIndex:0];
+            
+            [self getMoreQuery:refreshControl];
+        }
+    }
+}
+
+- (void)getMoreQuery:(UIRefreshControl *)refreshControl {
+    PFQuery *postQuery = [Post query];
+    [postQuery orderByDescending:@"createdAt"];
+    [postQuery includeKey:@"author"];
+    postQuery.skip = 20;
+    //    postQuery.limit = 20;
+    
+    // fetch data asynchronously
+    [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
+        if (posts) {
+            self.posts = posts;
+            NSLog(@"got more of 'em");
+            [self.collView reloadData];
+            if (refreshControl) {
+                [refreshControl endRefreshing];
+            }
+        }
+        else {
+            NSLog(@"ERROR GETTING THE EXTRA PARSE POSTS!");
+        }
+    }];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

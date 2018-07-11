@@ -82,12 +82,16 @@
         else {
             NSLog(@"could upload - sorry");
         }
-        [self performSegueWithIdentifier:@"cancelUpload" sender:nil];
+        //[self performSegueWithIdentifier:@"cancelUpload" sender:nil];
+        [self.tabBarController setSelectedIndex:0];
+        [self dismissViewControllerAnimated:true completion:nil];
+        
     }];
 }
 
 - (IBAction)cancelUpload:(id)sender {
-    [self performSegueWithIdentifier:@"cancelUpload" sender:nil];
+    //[self performSegueWithIdentifier:@"cancelUpload" sender:nil];
+    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
