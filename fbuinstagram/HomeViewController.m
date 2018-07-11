@@ -16,6 +16,7 @@
 @property (strong, nonatomic) NSArray *posts;
 @property (strong, nonatomic) NSString *createdAtString;
 @property (assign, nonatomic) BOOL isMoreDataLoading;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 @end
 
@@ -23,31 +24,38 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:true];
-    [self getQuery:nil];
+    [self getQuery:self.refreshControl];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(getQuery:) forControlEvents:UIControlEventValueChanged];
-    [self.tableView insertSubview:refreshControl atIndex:0];
-    // FILL THE ARRAY OF POSTS
-    [self getQuery:refreshControl];
+    
+    // Fill the array of posts
+    [self getQuery:self.refreshControl];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.rowHeight = 600;
-    
-    // Do any additional setup after loading the view.
-    
-    NSLog(@"hopefully here last");
-    //[NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(onTimer) userInfo:nil repeats:true];
+    [self getQuerySetUpRefreshControl:self.refreshControl];
+
 }
 
-//- (void)onTimer {
-//    [self.tableView reloadData];
-//}
+// set up for the refresh controller
+- (void)getQuerySetUpRefreshControl:(UIRefreshControl *)refreshControl {
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(getQuery:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
+}
 
+// set up for the refresh controller
+- (void)getMoreQuerySetUpRefreshControl:(UIRefreshControl *)refreshControl {
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(getMoreQuery:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
+}
+
+// call to parse to set posts array
 - (void)getQuery:(UIRefreshControl *)refreshControl {
+    [self getQuerySetUpRefreshControl:self.refreshControl];
     PFQuery *postQuery = [Post query];
     [postQuery orderByDescending:@"createdAt"];
     [postQuery includeKey:@"author"];
@@ -68,6 +76,8 @@
         }
     }];
 }
+
+// to logout
 - (IBAction)logoutTap:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
         // PFUser.current() will now be nil
@@ -79,6 +89,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+// triggers for infinite scrolling
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if(!self.isMoreDataLoading){
         // Calculate the position of one screen length before the bottom of the results
@@ -100,24 +112,28 @@
 }
 
 - (void)getMoreQuery:(UIRefreshControl *)refreshControl {
+    [self getMoreQuerySetUpRefreshControl:self.refreshControl];
     PFQuery *postQuery = [Post query];
     [postQuery orderByDescending:@"createdAt"];
     [postQuery includeKey:@"author"];
-    postQuery.skip = 20;
+//    postQuery.skip = 20;
 //    postQuery.limit = 20;
     
     // fetch data asynchronously
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
-        if (posts) {
-            self.posts = posts;
-            NSLog(@"got more of 'em");
-            [self.tableView reloadData];
-            if (refreshControl) {
-                [refreshControl endRefreshing];
-            }
+        if(error)
+        {
+            NSLog(@"ERROR GETTING THE EXTRA PARSE POSTS!");
         }
         else {
-            NSLog(@"ERROR GETTING THE EXTRA PARSE POSTS!");
+            if (posts) {
+                self.posts = posts;
+                NSLog(@"got more of 'em");
+                [self.tableView reloadData];
+                if (refreshControl) {
+                    [refreshControl endRefreshing];
+                }
+            }
         }
     }];
 }
@@ -134,21 +150,15 @@
 */
 
 - (nonnull PostCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    
+    // set the cell's simple properties
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"postCell"];
-    //cell.delegate = self;
-
     Post * curPost = self.posts[indexPath.row];
     cell.captionLabel.text = curPost.caption;
-    //cell.postedImage.image = curPost.image;
     cell.screennameLabel.text = curPost.author.username;
-    //cell.dateLabel.text = curPost.createdAt;
     
-//    cell.ppImage = curPost.userID;
-//    cell.locationLabel = curPost.
-    //[cell setPost:curPost];
+    // call settPost to set the cell's PFImage views
     [cell settPost:curPost];
-    NSLog(@"hopefully here first");
-//    cell.frame.size.height = CGRectMake(cell.frame.origin.x, cell.frame.origin.x, cell.frame.size.width, 50);
 
     return cell;
 }
