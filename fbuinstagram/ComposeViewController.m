@@ -66,19 +66,13 @@
     // editedImage = [editedImage resizeImage]
     // Do something with the images (based on your use case)
     self.picToUpload.image = editedImage;
-//    [self.posts addObject:editedImage];
-//    [self.tableView reloadData];
+
     
     // Dismiss UIImagePickerController to go back to your original view controller
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (IBAction)sharePostTap:(id)sender {
-//    self.myNewPost.image = [Post getPF
-//    [self.picToUpload.image getP];
-//    self.myNewPost.caption = self.captionLabel.text;
-//    self.myNewPost.likeCount = 0;
-//    self.myNewPost.commentCount = 0;
-//    UIImage *downscaled =
+
     [self resizeImage:self.picToUpload.image withSize:CGSizeMake(250, 250)];
     [Post postUserImage:self.picToUpload.image withCaption:self.captionLabel.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded)
