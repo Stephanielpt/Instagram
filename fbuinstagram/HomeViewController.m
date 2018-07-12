@@ -35,7 +35,7 @@
     [self getQuery:self.refreshControl];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.rowHeight = 600;
+    self.tableView.rowHeight = 800;
     [self getQuerySetUpRefreshControl:self.refreshControl];
 
 }
@@ -148,10 +148,13 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    ProfileViewController *profileViewController = [segue destinationViewController];
-    PostCell *tappedCell = sender;
-    
-    profileViewController.user = tappedCell.post.author;
+    if([segue.identifier isEqualToString:@"otherUserSegue"])
+    {
+        ProfileViewController *profileViewController = [segue destinationViewController];
+        PostCell *tappedCell = sender;
+        
+        profileViewController.user = tappedCell.post.author;
+    }
     // Pass the selected object to the new view controller.
 }
 

@@ -294,7 +294,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nSd-dm-PWC">
-                                                    <rect key="frame" x="15" y="505" width="345" height="21"/>
+                                                    <rect key="frame" x="15" y="600" width="345" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                                     <nil key="textColor"/>
@@ -305,7 +305,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ah" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zcU-Q5-XLf">
-                                                    <rect key="frame" x="15" y="483" width="339" height="14"/>
+                                                    <rect key="frame" x="15" y="530" width="339" height="14"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                                     <nil key="textColor"/>
@@ -320,16 +320,31 @@
                                                         <action selector="likeTap:" destination="PxA-e3-WD7" eventType="touchUpInside" id="Ubt-mb-KPe"/>
                                                     </connections>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2zh-1G-jZ5">
+                                                    <rect key="frame" x="12" y="485" width="8" height="15"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgc-Cl-CGg">
+                                                    <rect key="frame" x="31" y="485" width="27" height="15"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="captionLabel" destination="zcU-Q5-XLf" id="AGg-6f-gKa"/>
                                             <outlet property="dateLabel" destination="nSd-dm-PWC" id="R9y-61-pR0"/>
                                             <outlet property="likeButton" destination="Edb-5p-cIY" id="5oz-B1-w0a"/>
+                                            <outlet property="likeCountLabel" destination="2zh-1G-jZ5" id="Cb4-z2-pCr"/>
                                             <outlet property="postedImage" destination="fia-zC-aQ9" id="ALw-cL-ybd"/>
                                             <outlet property="ppImage" destination="l0E-4s-2SP" id="qCf-Pl-2a6"/>
                                             <outlet property="screennameLabel" destination="Uqe-Ts-hMI" id="odf-Iw-9wc"/>
-                                            <segue destination="d4b-9z-ZrP" kind="show" id="afN-RF-r13"/>
+                                            <segue destination="d4b-9z-ZrP" kind="show" identifier="otherUserSegue" id="afN-RF-r13"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

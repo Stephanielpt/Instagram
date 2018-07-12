@@ -43,6 +43,7 @@
     Post *post = self.post;
     //user[@"image"] = [Post getPFFileFromImage:editedImage];
     [post saveInBackground];
+    self.likeCountLabel.text = [NSString stringWithFormat:@"%d", self.post.likeCount];
 }
 
 - (void)settPost:(Post *)post {
@@ -63,5 +64,6 @@
     else {
         self.likeButton.selected = NO;
     }
+    self.likeCountLabel.text = [NSString stringWithFormat:@"%d", self.post.likeCount];
 }
 @end
