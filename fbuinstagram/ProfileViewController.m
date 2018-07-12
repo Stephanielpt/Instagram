@@ -51,7 +51,14 @@
     // specify shape of profile pfimage
     self.ppImage.layer.cornerRadius = 45;
     // and username
-    self.screennameLabel.text = PFUser.currentUser.username;
+    if(self.user) // for another user
+    {
+        self.screennameLabel.text = self.user.username;
+    }
+    else // for current user
+    {
+        self.screennameLabel.text = PFUser.currentUser.username;
+    }
 }
 
 
@@ -73,14 +80,31 @@
             {
                 self.posts = posts;
                 self.postsforCurrUser = [NSMutableArray array];
-                for(Post *post in self.posts)
+                // for another user
+                if(self.user)
                 {
-                    PFUser *myUser = PFUser.currentUser;
-                    NSString *postId = [NSString stringWithFormat:@"%@", post.author.objectId];
-                    NSString *currUserId = [NSString stringWithFormat:@"%@", myUser.objectId];
-                    if([postId isEqualToString:currUserId])
+                    for(Post *post in self.posts)
                     {
-                        [self.postsforCurrUser addObject:post];
+                        PFUser *myUser = self.user;
+                        NSString *postId = [NSString stringWithFormat:@"%@", post.author.objectId];
+                        NSString *currUserId = [NSString stringWithFormat:@"%@", myUser.objectId];
+                        if([postId isEqualToString:currUserId])
+                        {
+                            [self.postsforCurrUser addObject:post];
+                        }
+                    }
+                }
+                // for current user
+                else {
+                    for(Post *post in self.posts)
+                    {
+                        PFUser *myUser = PFUser.currentUser;
+                        NSString *postId = [NSString stringWithFormat:@"%@", post.author.objectId];
+                        NSString *currUserId = [NSString stringWithFormat:@"%@", myUser.objectId];
+                        if([postId isEqualToString:currUserId])
+                        {
+                            [self.postsforCurrUser addObject:post];
+                        }
                     }
                 }
                 NSLog(@"got 'emmmmmmmm");
@@ -207,7 +231,7 @@
     // pass information from the tapped cell to the details about it
     PostCollectionViewCell *tappedCell = sender;
     NSIndexPath *indexPath = [self.collView indexPathForCell:tappedCell];
-    Post *post = self.posts[indexPath.item];
+    Post *post = self.postsforCurrUser[indexPath.item];
     DetailsViewController *detailsViewController = [segue destinationViewController];
     detailsViewController.post = post;
     detailsViewController.postCell = tappedCell;

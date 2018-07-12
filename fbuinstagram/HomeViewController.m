@@ -151,7 +151,7 @@
     ProfileViewController *profileViewController = [segue destinationViewController];
     PostCell *tappedCell = sender;
     
-    ProfileViewController.user = 
+    profileViewController.user = tappedCell.post.author;
     // Pass the selected object to the new view controller.
 }
 

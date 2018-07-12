@@ -651,6 +651,7 @@
                                         </view>
                                         <connections>
                                             <outlet property="postedImage" destination="B5A-rz-CIE" id="bag-Hz-fwr"/>
+                                            <segue destination="UnN-39-Nq8" kind="show" id="ZFW-2n-n7D"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -666,9 +667,6 @@
                                 <rect key="frame" x="16" y="80" width="88" height="88"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="9HL-zC-F0Y" appends="YES" id="Uwe-DN-TzE"/>
-                                </connections>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -682,13 +680,8 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cjE-Kn-BNc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="9HL-zC-F0Y">
-                    <connections>
-                        <action selector="uploadTap:" destination="d4b-9z-ZrP" id="320-Nh-eF8"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="4433" y="2061"/>
+            <point key="canvasLocation" x="5854" y="490"/>
         </scene>
     </scenes>
     <resources>
@@ -702,6 +695,7 @@
         <image name="whiteinstabrand" width="1000" height="358"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="ZFW-2n-n7D"/>
         <segue reference="Etl-Ez-1ax"/>
     </inferredMetricsTieBreakers>
 </document>
