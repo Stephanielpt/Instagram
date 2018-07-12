@@ -20,6 +20,10 @@
 @property (strong, nonatomic) NSArray *posts;
 @property (strong, nonatomic) NSMutableArray *postsforCurrUser;
 @property (assign, nonatomic) BOOL isMoreDataLoading;
+@property (weak, nonatomic) IBOutlet UIButton *uploadOldPicTap;
+@property (weak, nonatomic) IBOutlet UILabel *postCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *followerCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *followingCountLabel;
 
 
 @end
@@ -62,6 +66,16 @@
         self.ppImage.file = PFUser.currentUser[@"image"];
     }
     [self.ppImage loadInBackground];
+    //if we are not in our own profile wewon't have edit button
+    if(self.user)
+    {
+        self.uploadOldPicTap.hidden = YES;
+    }
+    else {
+        self.uploadOldPicTap.layer.borderWidth = 1;
+        self.uploadOldPicTap.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        self.uploadOldPicTap.layer.cornerRadius = 8;
+    }
 }
 
 
@@ -129,21 +143,28 @@
         }
     }];
 }
+
+- (IBAction)uploadOldPicTap:(id)sender {
+    BOOL oldPic = YES;
+    [self choosePic:oldPic];
+}
+
 - (IBAction)uploadTap:(id)sender {
-    [self choosePic];
+    BOOL oldPic = NO;
+    [self choosePic:oldPic];
 }
 
 
 
-- (void)choosePic {
+- (void)choosePic:(BOOL) oldPic {
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
     imagePickerVC.delegate = self;
     imagePickerVC.allowsEditing = YES;
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] && !oldPic) {
         imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
     }
     else {
-        NSLog(@"Camera 🚫 available so we will use photo library instead");
+        NSLog(@"Camera 🚫 available so we will use photo library instead -- or you chose upload");
         imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
     
@@ -266,6 +287,9 @@
 }
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    // update postsCountLabel
+    self.postCountLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)self.postsforCurrUser.count];
+    //actually return the number of cells
     return self.postsforCurrUser.count;
 }
 

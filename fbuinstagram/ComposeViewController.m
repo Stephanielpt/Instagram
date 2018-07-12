@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *captionLabel;
 @property (weak, nonatomic) IBOutlet UITextView *myUITextView;
 @property (strong, nonatomic) Post *myNewPost;
+@property (weak, nonatomic) IBOutlet UIButton *uploadPhotoTap;
 @property BOOL *sharing;
 
 @end
@@ -29,16 +30,21 @@
 }
 
 - (IBAction)uploadTap:(id)sender {
-    [self choosePic];
+    BOOL oldPost = NO;
+    [self choosePic:oldPost];
+}
+
+- (IBAction)uploadOldPhotoTap:(id)sender {
+    BOOL oldPost = YES;
+    [self choosePic:oldPost];
 }
 
 
-
-- (void)choosePic {
+- (void)choosePic:(BOOL)oldPost {
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
     imagePickerVC.delegate = self;
     imagePickerVC.allowsEditing = YES;
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] && oldPost == NO) {
         imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
     }
     else {
