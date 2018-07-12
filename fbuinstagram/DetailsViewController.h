@@ -15,7 +15,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *screennameLabel;
 @property (weak, nonatomic) IBOutlet PFImageView *postedImage;
 @property (weak, nonatomic) IBOutlet UILabel *captionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (strong, nonatomic) Post *post;
 @property (strong, nonatomic) PostCollectionViewCell *postCell;
+@property (weak, nonatomic) IBOutlet UILabel *likeCountLabel;
+@property (weak, nonatomic) IBOutlet UIButton *likeButton;
 
 @end

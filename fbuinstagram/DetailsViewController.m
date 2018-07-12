@@ -26,12 +26,30 @@
     else {
         self.screennameLabel.text = self.post.author.username;
         self.captionLabel.text = self.post.caption;
+        self.dateLabel.text = self.post.createdAtString;
         self.postedImage.file = self.postCell.post[@"image"];
         [self.postedImage loadInBackground];
         self.ppImage.file = self.postCell.post[@"author"][@"image"];
         [self.ppImage loadInBackground];
         self.ppImage.layer.cornerRadius = 25;
     }
+}
+
+- (IBAction)likeTap:(id)sender {
+    // already liked so goal is to unlike
+    if(self.post.likeCount)
+    {
+        self.post.likeCount--;
+        self.likeButton.selected = NO;
+    }
+    else { // not yet liked so goal is to like
+        self.post.likeCount++;
+        self.likeButton.selected = YES;
+    }
+    Post *post = self.post;
+    //user[@"image"] = [Post getPFFileFromImage:editedImage];
+    [post saveInBackground];
+    self.likeCountLabel.text = [NSString stringWithFormat:@"%d", self.post.likeCount];
 }
 
 - (void)didReceiveMemoryWarning {

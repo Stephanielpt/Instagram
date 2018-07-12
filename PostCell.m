@@ -31,14 +31,24 @@
 
 - (IBAction)likeTap:(id)sender {
     // already liked so goal is to unlike
+    PFUser *myUser = PFUser.currentUser;
     if(self.post.likeCount)
     {
         self.post.likeCount = 0;
         self.likeButton.selected = NO;
+        for(NSString *usersId in self.post.likers)
+        {
+            if([usersId isEqualToString:myUser.objectId])
+            {
+                [self.post.likers removeObject:usersId];
+            }
+        }
+        [self.post saveInBackground];
     }
     else { // not yet liked so goal is to like
         self.post.likeCount = 1;
         self.likeButton.selected = YES;
+        [self.post.likers addObject:myUser.objectId];
     }
     Post *post = self.post;
     //user[@"image"] = [Post getPFFileFromImage:editedImage];
