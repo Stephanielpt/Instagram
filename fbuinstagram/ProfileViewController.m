@@ -170,7 +170,7 @@
     // Do something with the images (based on your use case)
     self.ppImage.image = editedImage;
     //save the image
-    PFUser *user = self.posts[0][@"author"];
+    PFUser *user = PFUser.currentUser;
     user[@"image"] = [Post getPFFileFromImage:editedImage];
     [user saveInBackground];
     //now show the image chosen
