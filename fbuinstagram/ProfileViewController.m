@@ -93,6 +93,12 @@
                             [self.postsforCurrUser addObject:post];
                         }
                     }
+                    //set the profile pic
+                    if(self.user[@"author"][@"image"])
+                    {
+                        self.ppImage.file = self.user[@"author"][@"image"];
+                        [self.ppImage loadInBackground];
+                    }
                 }
                 // for current user
                 else {
@@ -106,13 +112,16 @@
                             [self.postsforCurrUser addObject:post];
                         }
                     }
+                    //set the profile pic
+                    if(self.postsforCurrUser.count)
+                    {
+                        self.ppImage.file = self.postsforCurrUser[0][@"author"][@"image"];
+                        [self.ppImage loadInBackground];
+                    }
                 }
                 NSLog(@"got 'emmmmmmmm");
                 [self.collView reloadData];
                 [refreshControl endRefreshing];
-                //set the profile pic
-                self.ppImage.file = self.postsforCurrUser[0][@"author"][@"image"];
-                [self.ppImage loadInBackground];
             }
         }
     }];

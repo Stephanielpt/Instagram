@@ -50,12 +50,16 @@
                                     <action selector="signinTap:" destination="TpZ-7q-5oD" eventType="touchUpInside" id="lgT-j5-UaB"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gLJ-oW-aJP">
+                            <imageView clipsSubviews="YES" alpha="0.0" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gLJ-oW-aJP">
                                 <rect key="frame" x="0.0" y="64" width="375" height="230"/>
                                 <color key="backgroundColor" red="0.70369170984455964" green="0.076881448093830268" blue="0.57853462736658612" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="230" id="sJB-1G-VyL"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="BbS-7o-akl" appends="YES" id="QNt-fP-0rY"/>
+                                </connections>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4CE-7X-MzB">
                                 <rect key="frame" x="32" y="303" width="312" height="30"/>
@@ -101,21 +105,30 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign up to see photos and videos from your friends." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fiR-kH-Kfu">
                                 <rect key="frame" x="47" y="194" width="281" height="40"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="itX-HS-FZc"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="70u-HP-uUF" appends="YES" id="khJ-Mv-BA6"/>
+                                </connections>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="whiteinstabrand" translatesAutoresizingMaskIntoConstraints="NO" id="hMu-fc-boe">
                                 <rect key="frame" x="88" y="123" width="201" height="63"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="63" id="Ekv-kh-7RW"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="yAk-0H-2Xd" appends="YES" id="24e-4H-J9f"/>
+                                </connections>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Stn-s5-ewe" firstAttribute="trailing" secondItem="fiR-kH-Kfu" secondAttribute="trailing" constant="47" id="62O-El-hyb"/>
                             <constraint firstItem="Stn-s5-ewe" firstAttribute="trailing" secondItem="sKi-oG-NnZ" secondAttribute="trailing" constant="31" id="6JX-ca-Jio"/>
@@ -141,6 +154,9 @@
                             <constraint firstItem="4CE-7X-MzB" firstAttribute="top" secondItem="gLJ-oW-aJP" secondAttribute="bottom" constant="9" id="z1m-gc-EYC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Stn-s5-ewe"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="SKc-He-hXi" appends="YES" id="lYF-aG-rM9"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="0og-SX-Gq1"/>
                     <connections>
@@ -152,6 +168,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AkJ-dn-fDq" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="TpZ-7q-5oD" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="SKc-He-hXi">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="mU7-ab-Zli" id="4Gp-Wq-e95"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="BbS-7o-akl">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="mU7-ab-Zli" id="ihc-sJ-ORo"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="70u-HP-uUF">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="mU7-ab-Zli" id="kfn-rU-b7j"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="yAk-0H-2Xd"/>
             </objects>
             <point key="canvasLocation" x="1791.2" y="120.98950524737631"/>
         </scene>

@@ -25,6 +25,11 @@
 - (IBAction)alreadyAccountTap:(id)sender {
     [self performSegueWithIdentifier:@"loginSegue" sender:nil];
 }
+- (IBAction)dismissKeyboard:(id)sender {
+    [self.usernameField resignFirstResponder];
+    [self.emailField resignFirstResponder];
+    [self.passwordField resignFirstResponder];
+}
 
 - (IBAction)signinTap:(id)sender {
     PFUser *newUser = [PFUser user];

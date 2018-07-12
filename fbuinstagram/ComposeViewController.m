@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *captionLabel;
 @property (weak, nonatomic) IBOutlet UITextView *myUITextView;
 @property (strong, nonatomic) Post *myNewPost;
+@property BOOL *sharing;
 
 @end
 
@@ -76,21 +77,25 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (IBAction)sharePostTap:(id)sender {
-
-    [self resizeImage:self.picToUpload.image withSize:CGSizeMake(250, 250)];
-    [Post postUserImage:self.picToUpload.image withCaption:self.captionLabel.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-        if(succeeded)
-        {
-            NSLog(@"uploaded!");
-        }
-        else {
-            NSLog(@"could upload - sorry");
-        }
-        //[self performSegueWithIdentifier:@"cancelUpload" sender:nil];
-        [self.tabBarController setSelectedIndex:0];
-        [self dismissViewControllerAnimated:true completion:nil];
-        
-    }];
+    if(self.sharing == NO)
+    {
+        self.sharing = YES;
+        [self resizeImage:self.picToUpload.image withSize:CGSizeMake(250, 250)];
+        [Post postUserImage:self.picToUpload.image withCaption:self.captionLabel.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+            if(succeeded)
+            {
+                NSLog(@"uploaded!");
+                self.sharing = NO;
+            }
+            else {
+                NSLog(@"could upload - sorry");
+            }
+            //[self performSegueWithIdentifier:@"cancelUpload" sender:nil];
+            [self.tabBarController setSelectedIndex:0];
+            [self dismissViewControllerAnimated:true completion:nil];
+            
+        }];
+    }
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
