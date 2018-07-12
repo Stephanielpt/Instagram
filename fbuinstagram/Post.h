@@ -16,6 +16,7 @@
 
 @property (nonatomic, strong) NSString *caption;
 @property (nonatomic, strong) PFFile *image;
+@property (nonatomic, strong) NSString *createdAtString;
 @property int likeCount;
 @property int commentCount;
 

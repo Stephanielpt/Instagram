@@ -65,5 +65,6 @@
         self.likeButton.selected = NO;
     }
     self.likeCountLabel.text = [NSString stringWithFormat:@"%d", self.post.likeCount];
+    self.dateLabel.text = post.createdAtString;
 }
 @end

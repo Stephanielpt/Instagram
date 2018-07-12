@@ -54,15 +54,18 @@
     if(self.user) // for another user
     {
         self.screennameLabel.text = self.user.username;
+        self.ppImage.file = self.user[@"image"];
     }
     else // for current user
     {
         self.screennameLabel.text = PFUser.currentUser.username;
+        self.ppImage.file = PFUser.currentUser[@"image"];
     }
+    [self.ppImage loadInBackground];
 }
 
 
-// query the psots to fill the collection view
+// query the posts to fill the collection view
 - (void)getQuery:(UIRefreshControl *)refreshControl {
     PFQuery *postQuery = [Post query];
     [postQuery orderByDescending:@"createdAt"];
@@ -166,15 +169,22 @@
     // Get the image captured by the UIImagePickerController
     UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
-    // editedImage = [editedImage resizeImage]
-    // Do something with the images (based on your use case)
+    //editedImage = [editedImage resizeImage]
     self.ppImage.image = editedImage;
+    
     //save the image
     PFUser *user = PFUser.currentUser;
     user[@"image"] = [Post getPFFileFromImage:editedImage];
     [user saveInBackground];
+    
     //now show the image chosen
-    self.ppImage.file = self.posts[0][@"author"][@"image"];
+    // load photo for current user 
+    self.ppImage.file = user[@"image"];
+    // if its for another user then load their photo
+    if(self.user)
+    {
+        self.ppImage.file = self.user[@"image"];
+    }
     [self.ppImage loadInBackground];
     // Dismiss UIImagePickerController to go back to your original view controller
     [self dismissViewControllerAnimated:YES completion:nil];

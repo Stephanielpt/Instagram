@@ -10,6 +10,7 @@
 #import "postCell.h"
 #import "Post.h"
 #import "ProfileViewController.h"
+#import "DateTools.h"
 
 @interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate>
 
@@ -166,7 +167,25 @@
     Post * curPost = self.posts[indexPath.row];
     cell.captionLabel.text = curPost.caption;
     cell.screennameLabel.text = curPost.author.username;
-    
+    // TODO: Format and set createdAtString
+    // Format createdAt date string
+//    NSDate *createdAtOriginalString = curPost.createdAt;
+//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+////    // Configure the input format to parse the date string
+//    formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
+//    // Convert String to Date
+//    NSDate *date = [formatter dateFromString:curPost.createdAt];
+    NSDate *date = curPost.createdAt;
+
+    // Configure output format
+    //formatter.dateStyle = NSDateFormatterShortStyle;
+    //formatter.timeStyle = NSDateFormatterNoStyle;
+    // Convert Date to String
+    NSString *timeAgoDate = [NSDate shortTimeAgoSinceDate:date];
+    curPost.createdAtString = timeAgoDate;
+    //NSString *timeAgoDate = [NSDate shortTimeAgoSinceDate:curPost[@"createdAtDate"]];
+//    NSString *timeAgoDate = [NSDate shortTimeAgoSinceDate:date];
+//    self.createdAtString = timeAgoDate;
     // call settPost to set the cell's PFImage views
     [cell settPost:curPost];
 
