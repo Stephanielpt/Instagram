@@ -18,7 +18,9 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collView;
 @property (weak, nonatomic) IBOutlet UILabel *screennameLabel;
 @property (strong, nonatomic) NSArray *posts;
+@property (strong, nonatomic) NSMutableArray *postsforCurrUser;
 @property (assign, nonatomic) BOOL isMoreDataLoading;
+
 
 @end
 
@@ -28,26 +30,32 @@
     [super viewDidLoad];
     self.collView.delegate = self;
     self.collView.dataSource = self;
+    
+    // more refresh control stuff
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(getQuery:) forControlEvents:UIControlEventValueChanged];
     [self.collView insertSubview:refreshControl atIndex:0];
-    // Do any additional setup after loading the view.
-    [self getQuery:refreshControl];
-    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout*)self.collView.collectionViewLayout;
     
+    // make call to parse to get array of posts for collection view
+    [self getQuery:refreshControl];
+    
+    // after accessing the profile posts - we format them
+    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout*)self.collView.collectionViewLayout;
     layout.minimumInteritemSpacing = 1;
     layout.minimumLineSpacing = 1;
-    
     CGFloat postersPerLine = 3;
     CGFloat itemWidth = (self.collView.frame.size.width - layout.minimumInteritemSpacing * (postersPerLine-1)) / postersPerLine;
     CGFloat itemHeight = itemWidth;
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
+    
+    // specify shape of profile pfimage
     self.ppImage.layer.cornerRadius = 45;
-    //set the profile pic
-//    self.ppImage.file = self.posts[0][@"author"][@"image"];
-//    [self.ppImage loadInBackground];
+    // and username
+    self.screennameLabel.text = PFUser.currentUser.username;
 }
 
+
+// query the psots to fill the collection view
 - (void)getQuery:(UIRefreshControl *)refreshControl {
     PFQuery *postQuery = [Post query];
     [postQuery orderByDescending:@"createdAt"];
@@ -56,20 +64,32 @@
     
     // fetch data asynchronously
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
-        if (posts) {
-            self.posts = posts;
-            NSLog(@"got 'emmmmmmmm");
-            [self.collView reloadData];
-            [refreshControl endRefreshing];
-            //set the profile pic
-            self.ppImage.file = self.posts[0][@"author"][@"image"];
-            [self.ppImage loadInBackground];
-            //    self.ppImage.file = post.author[@"image"];
-            //    [self.ppImage loadInBackground];
-
+        if (error != nil)
+        {
+            NSLog(@"ERROR GETTING THE PARSE POSTS!");
         }
         else {
-            NSLog(@"ERROR GETTING THE PARSE POSTS!");
+            if(posts)
+            {
+                self.posts = posts;
+                self.postsforCurrUser = [NSMutableArray array];
+                for(Post *post in self.posts)
+                {
+                    PFUser *myUser = PFUser.currentUser;
+                    NSString *postId = [NSString stringWithFormat:@"%@", post.author.objectId];
+                    NSString *currUserId = [NSString stringWithFormat:@"%@", myUser.objectId];
+                    if([postId isEqualToString:currUserId])
+                    {
+                        [self.postsforCurrUser addObject:post];
+                    }
+                }
+                NSLog(@"got 'emmmmmmmm");
+                [self.collView reloadData];
+                [refreshControl endRefreshing];
+                //set the profile pic
+                self.ppImage.file = self.postsforCurrUser[0][@"author"][@"image"];
+                [self.ppImage loadInBackground];
+            }
         }
     }];
 }
@@ -155,17 +175,20 @@
     //    postQuery.limit = 20;
     
     // fetch data asynchronously
-    [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
-        if (posts) {
-            self.posts = posts;
-            NSLog(@"got more of 'em");
-            [self.collView reloadData];
-            if (refreshControl) {
-                [refreshControl endRefreshing];
-            }
+    [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error)
+        {
+        if (error != nil) {
+            NSLog(@"ERROR GETTING THE EXTRA PARSE POSTS!");
         }
         else {
-            NSLog(@"ERROR GETTING THE EXTRA PARSE POSTS!");
+            if (posts) {
+                self.posts = posts;
+                NSLog(@"got more of 'em");
+                [self.collView reloadData];
+                if (refreshControl) {
+                    [refreshControl endRefreshing];
+                }
+            }
         }
     }];
 }
@@ -180,8 +203,8 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
+    // pass information from the tapped cell to the details about it
     PostCollectionViewCell *tappedCell = sender;
     NSIndexPath *indexPath = [self.collView indexPathForCell:tappedCell];
     Post *post = self.posts[indexPath.item];
@@ -193,15 +216,14 @@
 
 - (nonnull __kindof PostCollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PostCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PostCollectionViewCell" forIndexPath:indexPath];
-    Post * curPost = self.posts[indexPath.item];
-    //postCollCell *cell;
+    // assign the collection view cell it's PFImage
+    Post * curPost = self.postsforCurrUser[indexPath.item];
     [cell settPost:curPost];
-    //return cell;
     return cell;
 }
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.posts.count;
+    return self.postsforCurrUser.count;
 }
 
 @end

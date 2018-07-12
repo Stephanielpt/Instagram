@@ -19,18 +19,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.screennameLabel.text = self.post.author.username;
-    self.captionLabel.text = self.post.caption;
     if(self.post == nil)
     {
-        NSLog(@"no pic soz");
+        NSLog(@"the post passed in was nil");
     }
-//    self.post = post;
-    self.postedImage.file = self.postCell.post[@"image"];
-    [self.postedImage loadInBackground];
-    self.ppImage.file = self.postCell.post[@"author"][@"image"];
-    [self.ppImage loadInBackground];
-    self.ppImage.layer.cornerRadius = 25;
+    else {
+        self.screennameLabel.text = self.post.author.username;
+        self.captionLabel.text = self.post.caption;
+        self.postedImage.file = self.postCell.post[@"image"];
+        [self.postedImage loadInBackground];
+        self.ppImage.file = self.postCell.post[@"author"][@"image"];
+        [self.ppImage loadInBackground];
+        self.ppImage.layer.cornerRadius = 25;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

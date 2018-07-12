@@ -29,6 +29,22 @@
 //    return createdCell;
 //}
 
+- (IBAction)likeTap:(id)sender {
+    // already liked so goal is to unlike
+    if(self.post.likeCount)
+    {
+        self.post.likeCount = 0;
+        self.likeButton.selected = NO;
+    }
+    else { // not yet liked so goal is to like
+        self.post.likeCount = 1;
+        self.likeButton.selected = YES;
+    }
+    Post *post = self.post;
+    //user[@"image"] = [Post getPFFileFromImage:editedImage];
+    [post saveInBackground];
+}
+
 - (void)settPost:(Post *)post {
     if(post == nil)
     {
@@ -40,6 +56,12 @@
     self.ppImage.file = post.author[@"image"];
     [self.ppImage loadInBackground];
     self.ppImage.layer.cornerRadius = 25;
-    
+    if(self.post.likeCount != 0)
+    {
+        self.likeButton.selected = YES;
+    }
+    else {
+        self.likeButton.selected = NO;
+    }
 }
 @end

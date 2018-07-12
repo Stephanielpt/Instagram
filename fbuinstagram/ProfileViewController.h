@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ProfileViewController : UIViewController
+// only when segueing to other profiles
+@property (strong, nonatomic) PFUser *user;
 
 @end

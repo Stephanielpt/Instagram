@@ -20,6 +20,7 @@
     
     ParseClientConfiguration *config = [ParseClientConfiguration   configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
         
+        // set config keys etc.
         configuration.applicationId = @"instagram";
         configuration.clientKey = @"jdhnaskdjnaskjd";
         configuration.server = @"https://cryptic-wave-55987.herokuapp.com/parse";
@@ -27,6 +28,7 @@
     
     [Parse initializeWithConfiguration:config];
     
+    // if the user has already logged in then just go straight to feed
     if (PFUser.currentUser) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         

@@ -9,6 +9,7 @@
 #import "HomeViewController.h"
 #import "postCell.h"
 #import "Post.h"
+#import "ProfileViewController.h"
 
 @interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate>
 
@@ -63,16 +64,19 @@
     
     // fetch data asynchronously
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
-        if (posts) {
-            self.posts = posts;
-            NSLog(@"got 'em");
-            [self.tableView reloadData];
-            if (refreshControl) {
-                [refreshControl endRefreshing];
-            }
+        if(error != nil)
+        {
+            NSLog(@"ERROR GETTING THE PARSE POSTS!");
         }
         else {
-            NSLog(@"ERROR GETTING THE PARSE POSTS!");
+            if (posts) {
+                self.posts = posts;
+                NSLog(@"got 'em");
+                [self.tableView reloadData];
+                if (refreshControl) {
+                    [refreshControl endRefreshing];
+                }
+            }
         }
     }];
 }
@@ -121,7 +125,7 @@
     
     // fetch data asynchronously
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
-        if(error)
+        if(error != nil)
         {
             NSLog(@"ERROR GETTING THE EXTRA PARSE POSTS!");
         }
@@ -139,15 +143,18 @@
 }
 
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
+    ProfileViewController *profileViewController = [segue destinationViewController];
+    PostCell *tappedCell = sender;
+    
+    ProfileViewController.user = 
     // Pass the selected object to the new view controller.
 }
-*/
+
 
 - (nonnull PostCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
