@@ -33,6 +33,7 @@
         [self.ppImage loadInBackground];
         self.ppImage.layer.cornerRadius = 25;
         self.likeCountLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)self.post.likers.count];
+        NSLog(@"%@", self.post.location);
         self.locationLabel.text = self.post.location;
         BOOL iliked = NO;
         PFUser *myUser = PFUser.currentUser;

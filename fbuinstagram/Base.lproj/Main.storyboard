@@ -370,10 +370,10 @@
                                                     <rect key="frame" x="340" y="21" width="20" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KPp-h5-b23">
-                                                    <rect key="frame" x="66" y="35" width="0.0" height="0.0"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GZ9-0D-1fc">
+                                                    <rect key="frame" x="66" y="40" width="33" height="16"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -384,7 +384,7 @@
                                             <outlet property="dateLabel" destination="nSd-dm-PWC" id="R9y-61-pR0"/>
                                             <outlet property="likeButton" destination="Edb-5p-cIY" id="5oz-B1-w0a"/>
                                             <outlet property="likeCountLabel" destination="2zh-1G-jZ5" id="Cb4-z2-pCr"/>
-                                            <outlet property="locationLabel" destination="KPp-h5-b23" id="x2J-GB-Itz"/>
+                                            <outlet property="locationLabel" destination="GZ9-0D-1fc" id="OIM-Og-sJz"/>
                                             <outlet property="postedImage" destination="fia-zC-aQ9" id="ALw-cL-ybd"/>
                                             <outlet property="ppImage" destination="l0E-4s-2SP" id="qCf-Pl-2a6"/>
                                             <outlet property="screennameLabel" destination="Uqe-Ts-hMI" id="odf-Iw-9wc"/>
@@ -425,7 +425,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R3x-Ff-wJh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4407" y="1188"/>
+            <point key="canvasLocation" x="4405.6000000000004" y="1187.8560719640182"/>
         </scene>
         <!--New Post-->
         <scene sceneID="5MM-zv-30h">
@@ -729,10 +729,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fT5-IB-NI9">
-                                <rect key="frame" x="71" y="103" width="0.0" height="0.0"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oTN-kw-ExV">
+                                <rect key="frame" x="71" y="103" width="33" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -746,7 +746,7 @@
                         <outlet property="dateLabel" destination="u5R-5x-WU5" id="sG4-wy-Mqe"/>
                         <outlet property="likeButton" destination="8nX-yN-EfM" id="z3D-7C-udh"/>
                         <outlet property="likeCountLabel" destination="7vk-fm-LD4" id="nMg-lQ-cOM"/>
-                        <outlet property="locationLabel" destination="fT5-IB-NI9" id="Ihj-tn-Aak"/>
+                        <outlet property="locationLabel" destination="oTN-kw-ExV" id="hhv-Do-qc2"/>
                         <outlet property="postedImage" destination="2V2-WN-4Dh" id="dpn-9A-Lrv"/>
                         <outlet property="ppImage" destination="tyZ-wJ-gRp" id="ZGI-Gd-qiT"/>
                         <outlet property="screennameLabel" destination="fRD-BE-waQ" id="jva-l7-Faw"/>
@@ -946,6 +946,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Whb-B8-xvN"/>
-        <segue reference="zPv-4T-qIa"/>
+        <segue reference="Etl-Ez-1ax"/>
     </inferredMetricsTieBreakers>
 </document>
