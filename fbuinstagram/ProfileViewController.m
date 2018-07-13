@@ -82,13 +82,21 @@
     }
     
     //setting the bio
-    //self.bioButton.hidden = YES;
     self.bioTextView.text = @"Write a bio...";
     self.bioTextView.textColor = [UIColor lightGrayColor];
     if(PFUser.currentUser[@"bio"])
     {
         self.bioTextView.text = PFUser.currentUser[@"bio"];
         self.bioTextView.textColor = [UIColor blackColor];
+    }
+    //for other user profiles
+    if(self.user)
+    {
+        if(self.user[@"bio"])
+        {
+            self.bioLabel.text = self.user[@"bio"];
+            self.bioLabel.textColor = [UIColor blackColor];
+        }
     }
 }
 
