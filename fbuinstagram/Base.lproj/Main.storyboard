@@ -525,7 +525,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0N5-JN-iwq">
-                                <rect key="frame" x="0.0" y="205" width="375" height="413"/>
+                                <rect key="frame" x="0.0" y="285" width="375" height="333"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.70369170979999995" green="0.076881448089999999" blue="0.57853462739999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="xUl-rR-OJZ">
@@ -624,12 +624,29 @@
                                 <color key="textColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="q1C-eB-4zx">
+                                <rect key="frame" x="18" y="205" width="272" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ey-zF-tpJ">
+                                <rect key="frame" x="298" y="205" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Save bio"/>
+                                <connections>
+                                    <action selector="saveBioTap:" destination="au2-y1-z20" eventType="touchUpInside" id="ApF-Kk-f7e"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="BdM-FL-cyF"/>
                     </view>
                     <navigationItem key="navigationItem" id="2aN-Xb-ub2"/>
                     <connections>
+                        <outlet property="bioButton" destination="7ey-zF-tpJ" id="TLS-zt-QDQ"/>
+                        <outlet property="bioTextView" destination="q1C-eB-4zx" id="pCS-Wd-rTb"/>
                         <outlet property="collView" destination="0N5-JN-iwq" id="71L-Bc-hb6"/>
                         <outlet property="followerCountLabel" destination="aag-oo-GNA" id="SUI-tR-VIB"/>
                         <outlet property="followingCountLabel" destination="ydL-kD-Y0b" id="oKG-95-wah"/>
@@ -804,7 +821,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3cN-Us-OuD">
-                                <rect key="frame" x="0.0" y="205" width="375" height="413"/>
+                                <rect key="frame" x="0.0" y="288" width="375" height="330"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.70369170979999995" green="0.076881448089999999" blue="0.57853462739999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="Iat-47-z79">
@@ -889,12 +906,20 @@
                                 <color key="textColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ct-Eu-uVn">
+                                <rect key="frame" x="16" y="205" width="246" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="g88-Wn-2wt"/>
                     </view>
                     <navigationItem key="navigationItem" id="4ui-w8-ZI7"/>
                     <connections>
+                        <outlet property="bioLabel" destination="9ct-Eu-uVn" id="Bi3-BX-k2Z"/>
                         <outlet property="collView" destination="3cN-Us-OuD" id="QEf-yz-Ynb"/>
                         <outlet property="followerCountLabel" destination="pvB-PG-twZ" id="ecE-qE-03Y"/>
                         <outlet property="followingCountLabel" destination="rh3-Hp-Ncb" id="dtu-5U-AlQ"/>
@@ -905,7 +930,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cjE-Kn-BNc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5854" y="490"/>
+            <point key="canvasLocation" x="5853.6000000000004" y="489.80509745127438"/>
         </scene>
     </scenes>
     <resources>

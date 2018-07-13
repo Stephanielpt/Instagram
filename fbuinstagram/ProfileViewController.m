@@ -24,6 +24,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *postCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *followerCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *followingCountLabel;
+@property (weak, nonatomic) IBOutlet UITextView *bioTextView;
+@property (weak, nonatomic) IBOutlet UIButton *bioButton;
+@property (weak, nonatomic) IBOutlet UILabel *bioLabel;
+
 
 
 @end
@@ -34,7 +38,7 @@
     [super viewDidLoad];
     self.collView.delegate = self;
     self.collView.dataSource = self;
-    
+    self.bioTextView.delegate = self;
     // more refresh control stuff
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(getQuery:) forControlEvents:UIControlEventValueChanged];
@@ -75,6 +79,16 @@
         self.uploadOldPicTap.layer.borderWidth = 1;
         self.uploadOldPicTap.layer.borderColor = [UIColor lightGrayColor].CGColor;
         self.uploadOldPicTap.layer.cornerRadius = 8;
+    }
+    
+    //setting the bio
+    //self.bioButton.hidden = YES;
+    self.bioTextView.text = @"Write a bio...";
+    self.bioTextView.textColor = [UIColor lightGrayColor];
+    if(PFUser.currentUser[@"bio"])
+    {
+        self.bioTextView.text = PFUser.currentUser[@"bio"];
+        self.bioTextView.textColor = [UIColor blackColor];
     }
 }
 
@@ -153,8 +167,6 @@
     [self choosePic:oldPic];
 }
 
-
-
 - (void)choosePic:(BOOL) oldPic {
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
     imagePickerVC.delegate = self;
@@ -208,6 +220,33 @@
     [self.ppImage loadInBackground];
     // Dismiss UIImagePickerController to go back to your original view controller
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    if ([textView.text isEqualToString:@"Write a bio..."]) {
+        textView.text = @"";
+        textView.textColor = [UIColor blackColor]; //optional
+        self.bioButton.hidden = NO;
+    }
+    [textView becomeFirstResponder];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    if ([textView.text isEqualToString:@""]) {
+        textView.text = @"Write a bio...";
+        textView.textColor = [UIColor lightGrayColor]; //optional
+    }
+    [textView resignFirstResponder];
+}
+- (IBAction)saveBioTap:(id)sender {
+    self.bioButton.titleLabel.text = @"Edit bio";
+    PFUser *user = PFUser.currentUser;
+    user[@"bio"] = self.bioTextView.text;
+    [user saveInBackground];
+    self.bioTextView.text = user[@"bio"];
+    [self.view endEditing:YES];
 }
 
 - (void)didReceiveMemoryWarning {
