@@ -18,9 +18,10 @@
 @property (nonatomic, strong) NSString *createdAtString;
 @property int likeCount;
 @property int commentCount;
+@property (nonatomic, strong) NSString *location;
 @property (strong, nonatomic) NSMutableArray *likers;
 
-+ (void) postUserImage: ( UIImage * _Nullable )image withCaption: ( NSString * _Nullable )caption withCompletion: (PFBooleanResultBlock  _Nullable)completion;
++ (void) postUserImage: ( UIImage * _Nullable )image withCaption: ( NSString * _Nullable )caption withLocation: ( NSString * _Nullable )location withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
 + (PFFile *)getPFFileFromImage: (UIImage * _Nullable)image;
 

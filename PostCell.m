@@ -32,9 +32,9 @@
 - (IBAction)likeTap:(id)sender {
     // already liked so goal is to unlike
     PFUser *myUser = PFUser.currentUser;
-    if(self.post.likeCount)
+    if(self.likeButton.selected)
     {
-        self.post.likeCount = 0;
+        self.post.likeCount--;
         self.likeButton.selected = NO;
         for(NSString *usersId in self.post.likers)
         {
@@ -43,15 +43,13 @@
                 [self.post.likers removeObject:usersId];
             }
         }
-        [self.post saveInBackground];
     }
     else { // not yet liked so goal is to like
-        self.post.likeCount = 1;
+        self.post.likeCount++;
         self.likeButton.selected = YES;
-        [self.post.likers addObject:myUser.objectId];
+        [self.post.likers addObject: myUser.objectId];
     }
     Post *post = self.post;
-    //user[@"image"] = [Post getPFFileFromImage:editedImage];
     [post saveInBackground];
     self.likeCountLabel.text = [NSString stringWithFormat:@"%d", self.post.likeCount];
 }
@@ -67,14 +65,28 @@
     self.ppImage.file = post.author[@"image"];
     [self.ppImage loadInBackground];
     self.ppImage.layer.cornerRadius = 25;
-    if(self.post.likeCount != 0)
+//    if(self.post.likeCount != 0)
+//    {
+//        self.likeButton.selected = YES;
+//    }
+//    else {
+//        self.likeButton.selected = NO;
+//    }
+    self.likeCountLabel.text = [NSString stringWithFormat:@"%d", self.post.likeCount];
+    self.locationLabel.text = self.post.location;
+    self.dateLabel.text = post.createdAtString;
+    BOOL iliked = NO;
+    PFUser *myUser = PFUser.currentUser;
+    for(NSString *string in self.post.likers)
+    {
+        if([myUser.objectId isEqualToString:string])
+        {
+            iliked = YES;
+        }
+    }
+    if(iliked)
     {
         self.likeButton.selected = YES;
     }
-    else {
-        self.likeButton.selected = NO;
-    }
-    self.likeCountLabel.text = [NSString stringWithFormat:@"%d", self.post.likeCount];
-    self.dateLabel.text = post.createdAtString;
 }
 @end

@@ -26,14 +26,14 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:true];
-    [self getQuery:self.refreshControl];
+    [self getQuery:self.refreshControl infiniteScroll:NO];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     // Fill the array of posts
-    [self getQuery:self.refreshControl];
+    [self getQuery:self.refreshControl infiniteScroll:NO];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.rowHeight = 800;
@@ -44,24 +44,20 @@
 // set up for the refresh controller
 - (void)getQuerySetUpRefreshControl:(UIRefreshControl *)refreshControl {
     self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(getQuery:) forControlEvents:UIControlEventValueChanged];
-    [self.tableView insertSubview:self.refreshControl atIndex:0];
-}
-
-// set up for the refresh controller
-- (void)getMoreQuerySetUpRefreshControl:(UIRefreshControl *)refreshControl {
-    self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(getMoreQuery:) forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl addTarget:self action:@selector(getQuery: infiniteScroll:) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
 // call to parse to set posts array
-- (void)getQuery:(UIRefreshControl *)refreshControl {
+- (void)getQuery:(UIRefreshControl *)refreshControl infiniteScroll:(BOOL)infinite{
     [self getQuerySetUpRefreshControl:self.refreshControl];
     PFQuery *postQuery = [Post query];
     [postQuery orderByDescending:@"createdAt"];
     [postQuery includeKey:@"author"];
-    postQuery.limit = 20;
+    if(!infinite)
+    {
+        postQuery.limit = 20;
+    }
     
     // fetch data asynchronously
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
@@ -111,37 +107,37 @@
             [refreshControl addTarget:self action:@selector(getMoreQuery:) forControlEvents:UIControlEventValueChanged];
             [self.tableView insertSubview:refreshControl atIndex:0];
             
-            [self getMoreQuery:refreshControl];
+            [self getQuery:refreshControl infiniteScroll:YES];
         }
     }
 }
 
-- (void)getMoreQuery:(UIRefreshControl *)refreshControl {
-    [self getMoreQuerySetUpRefreshControl:self.refreshControl];
-    PFQuery *postQuery = [Post query];
-    [postQuery orderByDescending:@"createdAt"];
-    [postQuery includeKey:@"author"];
-//    postQuery.skip = 20;
-//    postQuery.limit = 20;
-    
-    // fetch data asynchronously
-    [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
-        if(error != nil)
-        {
-            NSLog(@"ERROR GETTING THE EXTRA PARSE POSTS!");
-        }
-        else {
-            if (posts) {
-                self.posts = posts;
-                NSLog(@"got more of 'em");
-                [self.tableView reloadData];
-                if (refreshControl) {
-                    [refreshControl endRefreshing];
-                }
-            }
-        }
-    }];
-}
+//- (void)getMoreQuery:(UIRefreshControl *)refreshControl {
+//    [self getMoreQuerySetUpRefreshControl:self.refreshControl];
+//    PFQuery *postQuery = [Post query];
+//    [postQuery orderByDescending:@"createdAt"];
+//    [postQuery includeKey:@"author"];
+////    postQuery.skip = 20;
+////    postQuery.limit = 20;
+//
+//    // fetch data asynchronously
+//    [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
+//        if(error != nil)
+//        {
+//            NSLog(@"ERROR GETTING THE EXTRA PARSE POSTS!");
+//        }
+//        else {
+//            if (posts) {
+//                self.posts = posts;
+//                NSLog(@"got more of 'em");
+//                [self.tableView reloadData];
+//                if (refreshControl) {
+//                    [refreshControl endRefreshing];
+//                }
+//            }
+//        }
+//    }];
+//}
 
 
 
@@ -168,24 +164,10 @@
     cell.captionLabel.text = curPost.caption;
     cell.screennameLabel.text = curPost.author.username;
     // TODO: Format and set createdAtString
-    // Format createdAt date string
-//    NSDate *createdAtOriginalString = curPost.createdAt;
-//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-////    // Configure the input format to parse the date string
-//    formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
-//    // Convert String to Date
-//    NSDate *date = [formatter dateFromString:curPost.createdAt];
     NSDate *date = curPost.createdAt;
-
-    // Configure output format
-    //formatter.dateStyle = NSDateFormatterShortStyle;
-    //formatter.timeStyle = NSDateFormatterNoStyle;
     // Convert Date to String
     NSString *timeAgoDate = [NSDate shortTimeAgoSinceDate:date];
     curPost.createdAtString = timeAgoDate;
-    //NSString *timeAgoDate = [NSDate shortTimeAgoSinceDate:curPost[@"createdAtDate"]];
-//    NSString *timeAgoDate = [NSDate shortTimeAgoSinceDate:date];
-//    self.createdAtString = timeAgoDate;
     // call settPost to set the cell's PFImage views
     [cell settPost:curPost];
 

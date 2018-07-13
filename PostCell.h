@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *captionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;
+@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (strong, nonatomic) Post *post;
 @property (weak, nonatomic) IBOutlet UILabel *likeCountLabel;
 

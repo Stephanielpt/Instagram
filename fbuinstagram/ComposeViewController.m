@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *myUITextView;
 @property (strong, nonatomic) Post *myNewPost;
 @property (weak, nonatomic) IBOutlet UIButton *uploadPhotoTap;
+@property (weak, nonatomic) IBOutlet UITextField *locationField;
 @property BOOL *sharing;
 
 @end
@@ -87,7 +88,7 @@
     {
         self.sharing = YES;
         [self resizeImage:self.picToUpload.image withSize:CGSizeMake(250, 250)];
-        [Post postUserImage:self.picToUpload.image withCaption:self.captionLabel.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        [Post postUserImage:self.picToUpload.image withCaption:self.captionLabel.text withLocation:self.locationField.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
             if(succeeded)
             {
                 NSLog(@"uploaded!");

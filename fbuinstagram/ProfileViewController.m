@@ -41,7 +41,7 @@
     [self.collView insertSubview:refreshControl atIndex:0];
     
     // make call to parse to get array of posts for collection view
-    [self getQuery:refreshControl];
+    [self getQuery:refreshControl infiniteScroll:NO];
     
     // after accessing the profile posts - we format them
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout*)self.collView.collectionViewLayout;
@@ -80,11 +80,14 @@
 
 
 // query the posts to fill the collection view
-- (void)getQuery:(UIRefreshControl *)refreshControl {
+- (void)getQuery:(UIRefreshControl *)refreshControl infiniteScroll:(BOOL)infinite{
     PFQuery *postQuery = [Post query];
     [postQuery orderByDescending:@"createdAt"];
     [postQuery includeKey:@"author"];
-    postQuery.limit = 20;
+    if(!infinite)
+    {
+        postQuery.limit = 20;
+    }
     
     // fetch data asynchronously
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
@@ -226,35 +229,9 @@
             [refreshControl addTarget:self action:@selector(getMoreQuery:) forControlEvents:UIControlEventValueChanged];
             [self.collView insertSubview:refreshControl atIndex:0];
             
-            [self getMoreQuery:refreshControl];
+            [self getQuery:refreshControl infiniteScroll:YES];
         }
     }
-}
-
-- (void)getMoreQuery:(UIRefreshControl *)refreshControl {
-    PFQuery *postQuery = [Post query];
-    [postQuery orderByDescending:@"createdAt"];
-    [postQuery includeKey:@"author"];
-    //postQuery.skip = 20;
-    //    postQuery.limit = 20;
-    
-    // fetch data asynchronously
-    [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error)
-        {
-        if (error != nil) {
-            NSLog(@"ERROR GETTING THE EXTRA PARSE POSTS!");
-        }
-        else {
-            if (posts) {
-                self.posts = posts;
-                NSLog(@"got more of 'em");
-                [self.collView reloadData];
-                if (refreshControl) {
-                    [refreshControl endRefreshing];
-                }
-            }
-        }
-    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -282,6 +259,7 @@
     PostCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PostCollectionViewCell" forIndexPath:indexPath];
     // assign the collection view cell it's PFImage
     Post * curPost = self.postsforCurrUser[indexPath.item];
+    curPost.likers = [NSMutableArray array];
     [cell settPost:curPost];
     return cell;
 }
