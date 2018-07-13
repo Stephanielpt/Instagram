@@ -28,9 +28,7 @@
 ////    createdCell.ppImage = postToCell.;
 //    return createdCell;
 //}
-
-- (IBAction)likeTap:(id)sender {
-    // already liked so goal is to unlike
+- (void)toLike {
     PFUser *myUser = PFUser.currentUser;
     if(self.likeButton.selected)
     {
@@ -51,8 +49,14 @@
     }
     Post *post = self.post;
     [post saveInBackground];
-    self.likeCountLabel.text = [NSString stringWithFormat:@"%d", self.post.likers.count];
+    self.likeCountLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)self.post.likers.count];
 }
+
+- (IBAction)likeTap:(id)sender {
+    // already liked so goal is to unlike
+    [self toLike];
+}
+
 
 - (void)settPost:(Post *)post {
     if(post == nil)
@@ -65,14 +69,7 @@
     self.ppImage.file = post.author[@"image"];
     [self.ppImage loadInBackground];
     self.ppImage.layer.cornerRadius = 25;
-//    if(self.post.likeCount != 0)
-//    {
-//        self.likeButton.selected = YES;
-//    }
-//    else {
-//        self.likeButton.selected = NO;
-//    }
-    self.likeCountLabel.text = [NSString stringWithFormat:@"%d", self.post.likeCount];
+    self.likeCountLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)self.post.likers.count];
     self.locationLabel.text = self.post.location;
     self.dateLabel.text = post.createdAtString;
     self.likeButton.selected = NO;
@@ -89,6 +86,6 @@
     {
         self.likeButton.selected = YES;
     }
-    self.likeCountLabel.text = [NSString stringWithFormat:@"%d", self.post.likeCount];
+    self.likeCountLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)self.post.likers.count];
 }
 @end

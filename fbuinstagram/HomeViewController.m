@@ -67,7 +67,7 @@
         }
         else {
             if (posts) {
-                if(!self.posts)
+                if(!infinite)
                 {
                     self.posts = [[NSMutableArray alloc] init];
                 }

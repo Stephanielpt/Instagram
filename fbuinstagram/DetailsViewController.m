@@ -74,7 +74,7 @@
     Post *post = self.post;
     //user[@"image"] = [Post getPFFileFromImage:editedImage];
     [post saveInBackground];
-    self.likeCountLabel.text = [NSString stringWithFormat:@"%d", self.post.likeCount];
+    self.likeCountLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)self.post.likers.count];
 }
 
 - (void)didReceiveMemoryWarning {
