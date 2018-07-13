@@ -15,7 +15,7 @@
 @interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSArray *posts;
+@property (strong, nonatomic) NSMutableArray *posts;
 @property (strong, nonatomic) NSString *createdAtString;
 @property (assign, nonatomic) BOOL isMoreDataLoading;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
@@ -38,7 +38,6 @@
     self.tableView.dataSource = self;
     self.tableView.rowHeight = 800;
     [self getQuerySetUpRefreshControl:self.refreshControl];
-
 }
 
 // set up for the refresh controller
@@ -48,15 +47,16 @@
     [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
-// call to parse to set posts array
+// call parse to set posts array
 - (void)getQuery:(UIRefreshControl *)refreshControl infiniteScroll:(BOOL)infinite{
     [self getQuerySetUpRefreshControl:self.refreshControl];
     PFQuery *postQuery = [Post query];
     [postQuery orderByDescending:@"createdAt"];
     [postQuery includeKey:@"author"];
-    if(!infinite)
+    postQuery.limit = 20;
+    if(infinite)
     {
-        postQuery.limit = 20;
+        postQuery.skip = self.posts.count;
     }
     
     // fetch data asynchronously
@@ -67,7 +67,11 @@
         }
         else {
             if (posts) {
-                self.posts = posts;
+                for(Post *newPost in posts)
+                {
+                    [self.posts addObject:newPost];
+                }
+                //self.posts = posts;
                 NSLog(@"got 'em");
                 [self.tableView reloadData];
                 if (refreshControl) {
@@ -78,18 +82,29 @@
     }];
 }
 
-// to logout
-- (IBAction)logoutTap:(id)sender {
-    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
-        // PFUser.current() will now be nil
-    }];
-    [self performSegueWithIdentifier:@"logoutSegue" sender:nil];
+// necessities for tableview
+- (nonnull PostCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    
+    // set the cell's simple properties
+    PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"postCell"];
+    Post * curPost = self.posts[indexPath.row];
+    cell.captionLabel.text = curPost.caption;
+    cell.screennameLabel.text = curPost.author.username;
+    // TODO: Format and set createdAtString
+    NSDate *date = curPost.createdAt;
+    // Convert Date to String
+    NSString *timeAgoDate = [NSDate shortTimeAgoSinceDate:date];
+    curPost.createdAtString = timeAgoDate;
+    // call settPost to set the cell's PFImage views
+    [cell settPost:curPost];
+    
+    return cell;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.posts.count;
 }
+
 
 // triggers for infinite scrolling
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -112,6 +127,19 @@
     }
 }
 
+// to logout
+- (IBAction)logoutTap:(id)sender {
+    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+        // PFUser.current() will now be nil
+    }];
+    [self performSegueWithIdentifier:@"logoutSegue" sender:nil];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -125,29 +153,5 @@
     }
     // Pass the selected object to the new view controller.
 }
-
-
-- (nonnull PostCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    
-    // set the cell's simple properties
-    PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"postCell"];
-    Post * curPost = self.posts[indexPath.row];
-    cell.captionLabel.text = curPost.caption;
-    cell.screennameLabel.text = curPost.author.username;
-    // TODO: Format and set createdAtString
-    NSDate *date = curPost.createdAt;
-    // Convert Date to String
-    NSString *timeAgoDate = [NSDate shortTimeAgoSinceDate:date];
-    curPost.createdAtString = timeAgoDate;
-    // call settPost to set the cell's PFImage views
-    [cell settPost:curPost];
-
-    return cell;
-}
-
-- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.posts.count;
-}
-
 
 @end

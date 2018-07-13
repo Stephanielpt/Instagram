@@ -31,7 +31,8 @@
     newPost.likeCount = 0;
     newPost.commentCount = 0;
     newPost.location = location;
-    newPost.likers = [NSMutableArray array];
+    NSMutableArray *myArray = [[NSMutableArray alloc] init];
+    newPost.likers = myArray;
     
     [newPost saveInBackgroundWithBlock: completion];
 }

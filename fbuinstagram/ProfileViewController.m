@@ -34,6 +34,11 @@
 
 @implementation ProfileViewController
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:true];
+    [self getQuery:nil];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.collView.delegate = self;
@@ -47,7 +52,7 @@
     // make call to parse to get array of posts for collection view
     [self getQuery:refreshControl];
     
-    // after accessing the profile posts - we format them
+    // after accessing the profile posts - format them
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout*)self.collView.collectionViewLayout;
     layout.minimumInteritemSpacing = 1;
     layout.minimumLineSpacing = 1;
@@ -63,11 +68,13 @@
     {
         self.screennameLabel.text = self.user.username;
         self.ppImage.file = self.user[@"image"];
+        self.title = self.user.username;
     }
     else // for current user
     {
         self.screennameLabel.text = PFUser.currentUser.username;
         self.ppImage.file = PFUser.currentUser[@"image"];
+        self.title = PFUser.currentUser.username;
     }
     [self.ppImage loadInBackground];
     //if we are not in our own profile wewon't have edit button

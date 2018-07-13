@@ -51,7 +51,7 @@
     }
     Post *post = self.post;
     [post saveInBackground];
-    self.likeCountLabel.text = [NSString stringWithFormat:@"%d", self.post.likeCount];
+    self.likeCountLabel.text = [NSString stringWithFormat:@"%d", self.post.likers.count];
 }
 
 - (void)settPost:(Post *)post {
@@ -75,6 +75,7 @@
     self.likeCountLabel.text = [NSString stringWithFormat:@"%d", self.post.likeCount];
     self.locationLabel.text = self.post.location;
     self.dateLabel.text = post.createdAtString;
+    self.likeButton.selected = NO;
     BOOL iliked = NO;
     PFUser *myUser = PFUser.currentUser;
     for(NSString *string in self.post.likers)
@@ -88,5 +89,6 @@
     {
         self.likeButton.selected = YES;
     }
+    self.likeCountLabel.text = [NSString stringWithFormat:@"%d", self.post.likeCount];
 }
 @end

@@ -16,6 +16,7 @@
 		9019265420F2AF37008C8CCD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9019265320F2AF37008C8CCD /* main.m */; };
 		9019265E20F2AF37008C8CCD /* fbuinstagramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9019265D20F2AF37008C8CCD /* fbuinstagramTests.m */; };
 		9019266920F2AF37008C8CCD /* fbuinstagramUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9019266820F2AF37008C8CCD /* fbuinstagramUITests.m */; };
+		90EBE68F20F9110A00317B33 /* Billabong.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 90EBE68E20F9110900317B33 /* Billabong.ttf */; };
 		90FD511C20F41B1800144ACC /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FD511B20F41B1800144ACC /* LoginViewController.m */; };
 		90FD511F20F41F4400144ACC /* RealLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FD511E20F41F4400144ACC /* RealLoginViewController.m */; };
 		90FD512220F4279C00144ACC /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FD512120F4279C00144ACC /* HomeViewController.m */; };
@@ -65,6 +66,7 @@
 		9019266420F2AF37008C8CCD /* fbuinstagramUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fbuinstagramUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9019266820F2AF37008C8CCD /* fbuinstagramUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = fbuinstagramUITests.m; sourceTree = "<group>"; };
 		9019266A20F2AF37008C8CCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		90EBE68E20F9110900317B33 /* Billabong.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Billabong.ttf; path = ../../../Billabong.ttf; sourceTree = "<group>"; };
 		90FD511A20F41B1800144ACC /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		90FD511B20F41B1800144ACC /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		90FD511D20F41F4400144ACC /* RealLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RealLoginViewController.h; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 		9019264320F2AF35008C8CCD /* fbuinstagram */ = {
 			isa = PBXGroup;
 			children = (
+				90EBE68920F90E6B00317B33 /* font */,
 				9019264420F2AF35008C8CCD /* AppDelegate.h */,
 				9019264520F2AF35008C8CCD /* AppDelegate.m */,
 				90FD511A20F41B1800144ACC /* LoginViewController.h */,
@@ -210,6 +213,14 @@
 				9019266A20F2AF37008C8CCD /* Info.plist */,
 			);
 			path = fbuinstagramUITests;
+			sourceTree = "<group>";
+		};
+		90EBE68920F90E6B00317B33 /* font */ = {
+			isa = PBXGroup;
+			children = (
+				90EBE68E20F9110900317B33 /* Billabong.ttf */,
+			);
+			path = font;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -322,6 +333,7 @@
 				9019265120F2AF37008C8CCD /* LaunchScreen.storyboard in Resources */,
 				9019264E20F2AF37008C8CCD /* Assets.xcassets in Resources */,
 				9019264C20F2AF35008C8CCD /* Main.storyboard in Resources */,
+				90EBE68F20F9110A00317B33 /* Billabong.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
