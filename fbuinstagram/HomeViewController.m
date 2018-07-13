@@ -104,42 +104,13 @@
             
             // ... Code to load more results ...
             UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-            [refreshControl addTarget:self action:@selector(getMoreQuery:) forControlEvents:UIControlEventValueChanged];
+            [refreshControl addTarget:self action:@selector(getQuery: infiniteScroll:) forControlEvents:UIControlEventValueChanged];
             [self.tableView insertSubview:refreshControl atIndex:0];
             
             [self getQuery:refreshControl infiniteScroll:YES];
         }
     }
 }
-
-//- (void)getMoreQuery:(UIRefreshControl *)refreshControl {
-//    [self getMoreQuerySetUpRefreshControl:self.refreshControl];
-//    PFQuery *postQuery = [Post query];
-//    [postQuery orderByDescending:@"createdAt"];
-//    [postQuery includeKey:@"author"];
-////    postQuery.skip = 20;
-////    postQuery.limit = 20;
-//
-//    // fetch data asynchronously
-//    [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
-//        if(error != nil)
-//        {
-//            NSLog(@"ERROR GETTING THE EXTRA PARSE POSTS!");
-//        }
-//        else {
-//            if (posts) {
-//                self.posts = posts;
-//                NSLog(@"got more of 'em");
-//                [self.tableView reloadData];
-//                if (refreshControl) {
-//                    [refreshControl endRefreshing];
-//                }
-//            }
-//        }
-//    }];
-//}
-
-
 
 #pragma mark - Navigation
 

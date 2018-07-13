@@ -41,7 +41,7 @@
     [self.collView insertSubview:refreshControl atIndex:0];
     
     // make call to parse to get array of posts for collection view
-    [self getQuery:refreshControl infiniteScroll:NO];
+    [self getQuery:refreshControl];
     
     // after accessing the profile posts - we format them
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout*)self.collView.collectionViewLayout;
@@ -80,14 +80,10 @@
 
 
 // query the posts to fill the collection view
-- (void)getQuery:(UIRefreshControl *)refreshControl infiniteScroll:(BOOL)infinite{
+- (void)getQuery:(UIRefreshControl *)refreshControl{
     PFQuery *postQuery = [Post query];
     [postQuery orderByDescending:@"createdAt"];
     [postQuery includeKey:@"author"];
-    if(!infinite)
-    {
-        postQuery.limit = 20;
-    }
     
     // fetch data asynchronously
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
@@ -212,26 +208,6 @@
     [self.ppImage loadInBackground];
     // Dismiss UIImagePickerController to go back to your original view controller
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if(!self.isMoreDataLoading){
-        // Calculate the position of one screen length before the bottom of the results
-        int scrollViewContentHeight = self.collView.contentSize.height;
-        int scrollOffsetThreshold = scrollViewContentHeight - self.collView.bounds.size.height;
-        
-        // When the user has scrolled past the threshold, start requesting
-        if(scrollView.contentOffset.y > scrollOffsetThreshold && self.collView.isDragging) {
-            self.isMoreDataLoading = true;
-            
-            // ... Code to load more results ...
-            UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-            [refreshControl addTarget:self action:@selector(getMoreQuery:) forControlEvents:UIControlEventValueChanged];
-            [self.collView insertSubview:refreshControl atIndex:0];
-            
-            [self getQuery:refreshControl infiniteScroll:YES];
-        }
-    }
 }
 
 - (void)didReceiveMemoryWarning {

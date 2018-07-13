@@ -33,6 +33,20 @@
         [self.ppImage loadInBackground];
         self.ppImage.layer.cornerRadius = 25;
         self.likeCountLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)self.post.likers.count];
+        self.locationLabel.text = self.post.location;
+        BOOL iliked = NO;
+        PFUser *myUser = PFUser.currentUser;
+        for(NSString *string in self.post.likers)
+        {
+            if([myUser.objectId isEqualToString:string])
+            {
+                iliked = YES;
+            }
+        }
+        if(iliked)
+        {
+            self.likeButton.selected = YES;
+        }
     }
 }
 
