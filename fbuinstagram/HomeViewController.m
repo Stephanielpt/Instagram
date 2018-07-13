@@ -67,6 +67,10 @@
         }
         else {
             if (posts) {
+                if(!self.posts)
+                {
+                    self.posts = [[NSMutableArray alloc] init];
+                }
                 for(Post *newPost in posts)
                 {
                     [self.posts addObject:newPost];
