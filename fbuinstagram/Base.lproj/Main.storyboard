@@ -362,6 +362,9 @@
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nSd-dm-PWC">
                                                     <rect key="frame" x="12" y="532" width="28.5" height="16"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="16" id="5tI-lT-rCa"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -433,6 +436,7 @@
                                                 <constraint firstItem="Edb-5p-cIY" firstAttribute="top" secondItem="fia-zC-aQ9" secondAttribute="bottom" constant="8" id="ItB-c8-P2i"/>
                                                 <constraint firstAttribute="trailing" secondItem="fia-zC-aQ9" secondAttribute="trailing" id="NZ8-R9-dMW"/>
                                                 <constraint firstItem="Uqe-Ts-hMI" firstAttribute="leading" secondItem="l0E-4s-2SP" secondAttribute="trailing" constant="8" id="Nig-ZD-iaJ"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="zcU-Q5-XLf" secondAttribute="trailing" constant="12" id="Nu5-dq-f6D"/>
                                                 <constraint firstItem="l0E-4s-2SP" firstAttribute="leading" secondItem="cQV-SU-thB" secondAttribute="leading" constant="8" id="O4B-QG-hDc"/>
                                                 <constraint firstItem="Uqe-Ts-hMI" firstAttribute="top" secondItem="cQV-SU-thB" secondAttribute="topMargin" id="O5a-O5-a4F"/>
                                                 <constraint firstItem="Edb-5p-cIY" firstAttribute="leading" secondItem="cQV-SU-thB" secondAttribute="leading" constant="8" id="Xpi-Fk-8gi"/>
@@ -446,6 +450,7 @@
                                                 <constraint firstItem="nSd-dm-PWC" firstAttribute="top" secondItem="zcU-Q5-XLf" secondAttribute="bottom" constant="8" id="gVU-U3-fmb"/>
                                                 <constraint firstItem="bs8-x9-87B" firstAttribute="top" secondItem="cQV-SU-thB" secondAttribute="topMargin" constant="10" id="ghx-zQ-AOf"/>
                                                 <constraint firstItem="GZ9-0D-1fc" firstAttribute="leading" secondItem="l0E-4s-2SP" secondAttribute="trailing" constant="8" id="uwh-dL-DO8"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="nSd-dm-PWC" secondAttribute="trailing" constant="12" id="zBT-mq-bk5"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -1121,6 +1126,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Whb-B8-xvN"/>
-        <segue reference="zPv-4T-qIa"/>
+        <segue reference="Etl-Ez-1ax"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -36,7 +36,7 @@
     [self getQuery:self.refreshControl infiniteScroll:NO];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.rowHeight = 800;
+    self.tableView.rowHeight = 600;
     [self getQuerySetUpRefreshControl:self.refreshControl];
 }
 
