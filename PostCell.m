@@ -38,23 +38,46 @@
         {
             if([usersId isEqualToString:myUser.objectId])
             {
-                [self.post.likers removeObject:usersId];
+                [self.post removeObject:PFUser.currentUser.objectId forKey:@"likers" ];
             }
         }
     }
     else { // not yet liked so goal is to like
         self.post.likeCount++;
         self.likeButton.selected = YES;
-        [self.post.likers addObject: myUser.objectId];
+        [self.post addUniqueObject:PFUser.currentUser.objectId forKey:@"likers" ];
     }
-    Post *post = self.post;
-    [post saveInBackground];
+    // Post *post = self.post;
+    [self.post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        
+    }];
     self.likeCountLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)self.post.likers.count];
 }
 
 - (IBAction)likeTap:(id)sender {
     // already liked so goal is to unlike
-    [self toLike];
+    PFUser *myUser = PFUser.currentUser;
+    if(self.likeButton.selected)
+    {
+        self.post.likeCount--;
+        self.likeButton.selected = NO;
+        for(NSString *usersId in self.post.likers)
+        {
+            if([usersId isEqualToString:myUser.objectId])
+            {
+                [self.post removeObject:PFUser.currentUser.objectId forKey:@"likers" ];
+            }
+        }
+    }
+    else { // not yet liked so goal is to like
+        self.post.likeCount++;
+        self.likeButton.selected = YES;
+        [self.post addUniqueObject:PFUser.currentUser.objectId forKey:@"likers" ];
+    }
+    Post *post = self.post;
+    //user[@"image"] = [Post getPFFileFromImage:editedImage];
+    [post saveInBackground];
+    self.likeCountLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)self.post.likers.count];
 }
 
 

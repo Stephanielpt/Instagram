@@ -49,10 +49,11 @@
 
 // call parse to set posts array
 - (void)getQuery:(UIRefreshControl *)refreshControl infiniteScroll:(BOOL)infinite{
-    [self getQuerySetUpRefreshControl:self.refreshControl];
+//    [self getQuerySetUpRefreshControl:self.refreshControl];
     PFQuery *postQuery = [Post query];
     [postQuery orderByDescending:@"createdAt"];
     [postQuery includeKey:@"author"];
+    [postQuery includeKey:@"likers"];
     postQuery.limit = 20;
     if(infinite)
     {
@@ -122,11 +123,11 @@
             self.isMoreDataLoading = true;
             
             // ... Code to load more results ...
-            UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-            [refreshControl addTarget:self action:@selector(getQuery: infiniteScroll:) forControlEvents:UIControlEventValueChanged];
-            [self.tableView insertSubview:refreshControl atIndex:0];
-            
-            [self getQuery:refreshControl infiniteScroll:YES];
+//            UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+//            [refreshControl addTarget:self action:@selector(getQuery: infiniteScroll:) forControlEvents:UIControlEventValueChanged];
+//            [self.tableView insertSubview:refreshControl atIndex:0];
+//
+            [self getQuery:self.refreshControl infiniteScroll:YES];
         }
     }
 }

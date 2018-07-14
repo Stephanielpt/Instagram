@@ -113,6 +113,7 @@
     PFQuery *postQuery = [Post query];
     [postQuery orderByDescending:@"createdAt"];
     [postQuery includeKey:@"author"];
+    [postQuery includeKey:@"likers"];
     
     // fetch data asynchronously
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
@@ -289,7 +290,7 @@
     PostCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PostCollectionViewCell" forIndexPath:indexPath];
     // assign the collection view cell it's PFImage
     Post * curPost = self.postsforCurrUser[indexPath.item];
-    curPost.likers = [NSMutableArray array];
+//    curPost.likers = [NSMutableArray array];
     [cell settPost:curPost];
     return cell;
 }

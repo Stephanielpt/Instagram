@@ -58,18 +58,20 @@
     {
         self.post.likeCount--;
         self.likeButton.selected = NO;
-        for(NSString *usersId in self.post.likers)
-        {
-            if([usersId isEqualToString:myUser.objectId])
-            {
-                [self.post.likers removeObject:usersId];
-            }
-        }
+//        for(NSString *usersId in self.post.likers)
+//        {
+//            if([usersId isEqualToString:myUser.objectId])
+//            {
+                [self.post removeObject:PFUser.currentUser.objectId forKey:@"likers"];
+                //[self.post.likers removeObject:usersId];
+//            }
+//        }
     }
     else { // not yet liked so goal is to like
         self.post.likeCount++;
         self.likeButton.selected = YES;
-        [self.post.likers addObject:myUser.objectId];
+        [self.post addUniqueObject:PFUser.currentUser.objectId forKey:@"likers"];
+        //[self.post.likers addObject:myUser.objectId];
     }
     Post *post = self.post;
     //user[@"image"] = [Post getPFFileFromImage:editedImage];
