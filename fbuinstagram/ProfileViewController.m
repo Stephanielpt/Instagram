@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collView;
 @property (weak, nonatomic) IBOutlet UILabel *screennameLabel;
 @property (strong, nonatomic) NSArray *posts;
+@property (strong, nonatomic) NSArray *users;
 @property (strong, nonatomic) NSMutableArray *postsforCurrUser;
 @property (assign, nonatomic) BOOL isMoreDataLoading;
 @property (weak, nonatomic) IBOutlet UIButton *uploadOldPicTap;
@@ -105,8 +106,28 @@
             self.bioLabel.textColor = [UIColor blackColor];
         }
     }
+    [self getUserQuery];
+    
 }
 
+// get PFUsers array from parse
+- (void)getUserQuery {
+    PFQuery *userQuery = [PFUser query];
+    
+    // fetch data asynchronously
+    [userQuery findObjectsInBackgroundWithBlock:^(NSArray<PFUser *> * _Nullable users, NSError * _Nullable error) {
+        if (error != nil)
+        {
+            NSLog(@"ERROR GETTING THE USERS!");
+        }
+        else {
+            NSLog(@"got the array of users");
+            self.users = users;
+            self.followerCountLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)self.users.count];
+            self.followingCountLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)self.users.count];
+        }
+    }];
+}
 
 // query the posts to fill the collection view
 - (void)getQuery:(UIRefreshControl *)refreshControl{
