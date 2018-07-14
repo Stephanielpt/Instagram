@@ -610,9 +610,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0N5-JN-iwq">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0N5-JN-iwq">
                                 <rect key="frame" x="0.0" y="285" width="375" height="333"/>
                                 <color key="backgroundColor" red="0.70369170979999995" green="0.076881448089999999" blue="0.57853462739999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="333" id="HRs-wx-h1e"/>
+                                </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="xUl-rR-OJZ">
                                     <size key="itemSize" width="154" height="154"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -970,9 +973,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3cN-Us-OuD">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3cN-Us-OuD">
                                 <rect key="frame" x="0.0" y="288" width="375" height="330"/>
                                 <color key="backgroundColor" red="0.70369170979999995" green="0.076881448089999999" blue="0.57853462739999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="330" id="0df-yn-TVL"/>
+                                </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="Iat-47-z79">
                                     <size key="itemSize" width="154" height="154"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
