@@ -1,4 +1,4 @@
-# Project 4 - *Mystagram*
+# Project 4 - *Minestagram*
 
 **Name of your app** is a photo sharing app using Parse as its backend.
 
@@ -14,7 +14,7 @@ The following **required** functionality is completed:
 - [x] User can take a photo, add a caption, and post it to "Instagram"
 - [x] User can view the last 20 posts submitted to "Instagram"
 - [x] User can pull to refresh the last 20 posts submitted to "Instagram"
-- [ ] User can tap a post to view post details, including timestamp and caption.
+- [x] User can tap a post from profile (like normal instagram) to view post details, including timestamp and caption.
 
 The following **optional** features are implemented:
 
@@ -23,22 +23,29 @@ The following **optional** features are implemented:
 - [x] Style the feed to look like the real Instagram feed.
 - [x] User can use a tab bar to switch between all "Instagram" posts and posts published only by the user. AKA, tabs for Home Feed and Profile
 - [x] User can load more posts once he or she reaches the bottom of the feed using infinite scrolling.
-- [ ] Show the username and creation time for each post
+- [x] Show the username and creation time for each post
 - [ ] After the user submits a new post, show a progress HUD while the post is being uploaded to Parse
 - User Profiles:
 - [x] Allow the logged in user to add a profile photo
 - [x] Display the profile photo with each post
 - [x] Tapping on a post's username or profile photo goes to that user's profile page
 - [ ] User can comment on a post and see all comments for each post in the post details screen.
-- [ ] User can like a post and see number of likes for each post in the post details screen.
+- [x] User can like a post and see number of likes for each post in the post details screen.
 - [ ] Implement a custom camera view.
 
 The following **additional** features are implemented:
 
 - [ ] List anything else that you can get done to improve the app functionality!
-- [ ] Shared button will only click once per post
-- [ ] Can go to the details vc from other users' profiles
-- [ ] 
+- [x] Shared button will only click once per post
+- [x] Can go to the details vc from other users' profiles
+- [x] Can edit bio and profile picture from your own profile tab but not if you're looking at someone else's profile
+- [x] Imported the font for instagram logo
+- [x] Can add locations to a post
+- [x] User can unlike posts from both the details vc and the home timeline
+- [x] User can go to a details vc from another users profile
+- [x] Profiles have the number of posts by the user
+- [x] Profiles show the number of users registered on the app as followers and following profiles
+
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
 1.
