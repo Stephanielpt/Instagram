@@ -182,7 +182,7 @@
                     //set the profile pic
                     if(self.postsforCurrUser.count)
                     {
-                        self.ppImage.file = self.postsforCurrUser[0][@"author"][@"image"];
+                        self.ppImage.file = PFUser.currentUser[@"image"];
                         [self.ppImage loadInBackground];
                     }
                 }
@@ -263,7 +263,7 @@
 {
     if ([textView.text isEqualToString:@"Write a bio..."]) {
         textView.text = @"";
-        textView.textColor = [UIColor blackColor]; //optional
+        textView.textColor = [UIColor blackColor];
         self.bioButton.hidden = NO;
     }
     [textView becomeFirstResponder];
