@@ -161,9 +161,9 @@
                         }
                     }
                     //set the profile pic
-                    if(self.user[@"author"][@"image"])
+                    if(self.user[@"image"])
                     {
-                        self.ppImage.file = self.user[@"author"][@"image"];
+                        self.ppImage.file = self.user[@"image"];
                         [self.ppImage loadInBackground];
                     }
                 }

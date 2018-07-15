@@ -17,6 +17,7 @@
 		9019265E20F2AF37008C8CCD /* fbuinstagramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9019265D20F2AF37008C8CCD /* fbuinstagramTests.m */; };
 		9019266920F2AF37008C8CCD /* fbuinstagramUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9019266820F2AF37008C8CCD /* fbuinstagramUITests.m */; };
 		90EBE68F20F9110A00317B33 /* Billabong.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 90EBE68E20F9110900317B33 /* Billabong.ttf */; };
+		90EBE69220FBDE5000317B33 /* LocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EBE69120FBDE5000317B33 /* LocationCell.m */; };
 		90FD511C20F41B1800144ACC /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FD511B20F41B1800144ACC /* LoginViewController.m */; };
 		90FD511F20F41F4400144ACC /* RealLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FD511E20F41F4400144ACC /* RealLoginViewController.m */; };
 		90FD512220F4279C00144ACC /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FD512120F4279C00144ACC /* HomeViewController.m */; };
@@ -67,6 +68,8 @@
 		9019266820F2AF37008C8CCD /* fbuinstagramUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = fbuinstagramUITests.m; sourceTree = "<group>"; };
 		9019266A20F2AF37008C8CCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		90EBE68E20F9110900317B33 /* Billabong.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Billabong.ttf; path = ../../../Billabong.ttf; sourceTree = "<group>"; };
+		90EBE69020FBDE5000317B33 /* LocationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationCell.h; sourceTree = "<group>"; };
+		90EBE69120FBDE5000317B33 /* LocationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationCell.m; sourceTree = "<group>"; };
 		90FD511A20F41B1800144ACC /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		90FD511B20F41B1800144ACC /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		90FD511D20F41F4400144ACC /* RealLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RealLoginViewController.h; sourceTree = "<group>"; };
@@ -187,6 +190,8 @@
 				90FD512420F42F8700144ACC /* Post.m */,
 				90FD512920F434B700144ACC /* PostCell.h */,
 				90FD512A20F434B700144ACC /* PostCell.m */,
+				90EBE69020FBDE5000317B33 /* LocationCell.h */,
+				90EBE69120FBDE5000317B33 /* LocationCell.m */,
 				90FD512C20F466C600144ACC /* ComposeViewController.h */,
 				90FD512D20F466C600144ACC /* ComposeViewController.m */,
 				9019264D20F2AF37008C8CCD /* Assets.xcassets */,
@@ -379,6 +384,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-fbuinstagram/Pods-fbuinstagram-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/DateTools/DateTools.framework",
 				"${BUILT_PRODUCTS_DIR}/Parse/Parse.framework",
@@ -386,6 +392,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DateTools.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Parse.framework",
@@ -445,6 +452,7 @@
 				90FD512E20F466C600144ACC /* ComposeViewController.m in Sources */,
 				90FD512B20F434B700144ACC /* PostCell.m in Sources */,
 				90FD511F20F41F4400144ACC /* RealLoginViewController.m in Sources */,
+				90EBE69220FBDE5000317B33 /* LocationCell.m in Sources */,
 				9019264620F2AF35008C8CCD /* AppDelegate.m in Sources */,
 				90FD513720F55A4C00144ACC /* PostCollectionViewCell.m in Sources */,
 				90FD513420F555B400144ACC /* ProfileViewController.m in Sources */,
