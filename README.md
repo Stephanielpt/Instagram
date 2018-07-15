@@ -1,8 +1,8 @@
 # Project 4 - *Minestagram*
 
-**Name of your app** is a photo sharing app using Parse as its backend.
+**Minestagram** is a photo sharing app using Parse as its backend.
 
-Time spent: **X** hours spent in total
+Time spent: **29** hours spent in total
 
 ## User Stories
 
@@ -39,12 +39,13 @@ The following **additional** features are implemented:
 - [x] Shared button will only click once per post
 - [x] Can go to the details vc from other users' profiles
 - [x] Can edit bio and profile picture from your own profile tab but not if you're looking at someone else's profile
-- [x] Imported the font for instagram logo
+- [x] Learned to import fonts for the instagram logo
 - [x] Can add locations to a post
+- [x] Locations are suggested when you type from the search bar using foursquare api
 - [x] User can unlike posts from both the details vc and the home timeline
 - [x] User can go to a details vc from another users profile
-- [x] Profiles have the number of posts by the user
-- [x] Profiles show the number of users registered on the app as followers and following profiles
+- [x] Profiles have the number of posts by the user, and show number of users registered on the app as followers and following profiles
+
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
